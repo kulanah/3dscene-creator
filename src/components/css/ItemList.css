@@ -1,0 +1,7 @@
+#itemListDiv{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1px red solid;
+  max-width: 30%;
+}
