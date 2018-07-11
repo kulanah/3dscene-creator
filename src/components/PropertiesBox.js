@@ -9,10 +9,10 @@ class PropertiesBox extends React.Component{
   render(){
     return (
       <div id='propertiesBoxDiv'>
-        <div className='shapeDiv'>Cube</div>
-        <div className='shapeDiv'>Sphere</div>
-        <div className='shapeDiv'>Cyllinder</div>
-        <div className='shapeDiv'>Pyramid</div>
+        <p>Height: 53</p>
+        <p>Width: 53</p>
+
+
       </div>
     )
   }

@@ -1,6 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//react components
+import { ThreeDScene } from './components/ThreeDScene';
+
+import { Provider } from 'react-redux';
+
+import store from './store';
+
+const router = (
+  <Provider store={store}>
+    <div id='sceneDiv'>
+      <ThreeDScene />
+    </div>
+  </Provider>
+);
+
+ReactDOM.render(router, document.getElementById('root'));

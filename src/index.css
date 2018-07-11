@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#sceneDiv{
+  width: 600px;
+  height: 600px;
+  border: 1px solid black;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}

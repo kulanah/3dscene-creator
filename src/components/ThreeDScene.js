@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Scene } from './Scene';
-import { ToolBar } from './ToolBar';
+import VisibleToolBar from './VisibleToolBar';
 import { ItemList } from './ItemList';
 import { PropertiesBox } from './PropertiesBox';
 
@@ -14,7 +14,7 @@ class ThreeDScene extends React.Component{
     return(
       <div>
         <Scene />
-        <ToolBar />
+        <VisibleToolBar />
         <ItemList />
         <PropertiesBox />
       </div>
