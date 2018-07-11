@@ -3,22 +3,32 @@ import React from 'react';
 import { Scene } from './Scene';
 import VisibleToolBar from './VisibleToolBar';
 import VisibleItemList from './VisibleItemList';
-// import { ItemList } from './ItemList';
 import { PropertiesBox } from './PropertiesBox';
-// import store from '../store';
 
 class ThreeDScene extends React.Component{
-  // constructor(){
-  //   super();
-  // }
+  constructor(){
+    super();
+
+    this.state = {
+      selectedItem: -1,
+    }
+
+    this.selectItem = this.selectItem.bind(this);
+  }
+
+  selectItem(foo){
+    console.log('AHA the answer is ' + foo);
+    this.setState({selectedItem: foo})
+  }
+
+
 
   render(){
-    console.log(this.props);
     return(
       <div>
         <Scene />
-        <VisibleToolBar />
-        <VisibleItemList />
+        <VisibleToolBar selectedItem={this.state.selectedItem} />
+        <VisibleItemList selectItem={this.selectItem} />
         <PropertiesBox />
       </div>
     )

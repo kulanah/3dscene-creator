@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/ItemList.css';
+import { Item } from './Item.js';
 
 import store from '../store';
 
@@ -18,8 +19,8 @@ class ItemList extends React.Component{
     } else {
       return (
         <ul>
-          {this.props.items.map(item => 
-          <li>{item.id + 1} : {item.type}</li>
+          {this.props.items.map(item =>
+            <Item listItem={this.props.selectItem} data={item} />
           )}
         </ul>
       )
