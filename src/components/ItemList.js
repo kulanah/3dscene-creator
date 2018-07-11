@@ -19,7 +19,7 @@ class ItemList extends React.Component{
       return (
         <ul>
           {this.props.items.map(item => 
-          <li>{item.id} : {item.type}</li>
+          <li>{item.id + 1} : {item.type}</li>
           )}
         </ul>
       )
