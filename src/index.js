@@ -12,7 +12,7 @@ import store from './store';
 const router = (
   <Provider store={store}>
     <div id='sceneDiv'>
-      <ThreeDScene />
+      <ThreeDScene store={store.getState()}/>
     </div>
   </Provider>
 );
