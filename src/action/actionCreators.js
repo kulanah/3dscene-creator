@@ -1,5 +1,3 @@
-import store from '../store';
-
 let currentID = -1;
 export function createSphere(){
   console.log('inside action create sphere');
