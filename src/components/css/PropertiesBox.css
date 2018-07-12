@@ -13,6 +13,12 @@
 }
 
 .propertiesRow{
+  margin-bottom: 0.2em;
   display:flex;
   justify-content: space-between;
+}
+
+
+.propertiesNumInput{
+  width: 4em;
 }

@@ -18,8 +18,13 @@ class PropertiesBox extends React.Component{
   displaySphere(item){
     return (
       <div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Sphere</span></div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Radius:</span><span>{item.radius}</span></div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Sphere</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Radius:</span>
+          <span><input className='propertiesNumInput' type='number' value={item.radius} /></span>
+        </div>
       </div>
     )
   }
@@ -27,9 +32,17 @@ class PropertiesBox extends React.Component{
   displayCylinder(item){
     return (
       <div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Cylinder</span></div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Radius:</span><span>{item.radius}</span></div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Height:</span><span>{item.height}</span></div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Cylinder</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Radius:</span>
+          <span>{item.radius}</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Height:</span>
+          <span>{item.height}</span>
+        </div>
       </div>
     )
   }
@@ -37,10 +50,21 @@ class PropertiesBox extends React.Component{
   displayBox(item){
     return (
       <div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Box:</span></div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Length:</span><span>{item.length}</span></div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Width:</span><span>{item.width}</span></div>
-        <div className='propertiesRow'><span className='propertiesTitle'>Height:</span><span>{item.height}</span></div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Box:</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Length:</span>
+          <span><input className='propertiesNumInput' type='number' value={item.length} /></span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Width:</span>
+          <span><input className='propertiesNumInput' type='number' value={item.width} /></span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Height:</span>
+          <span><input className='propertiesNumInput' type='number' value={item.height} /></span>
+        </div>
       </div>
     )
   }
