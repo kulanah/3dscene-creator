@@ -18,7 +18,6 @@ class Item extends React.Component{
 
   render(){
     let data = this.props.data;
-    console.log(data);
     return (
       <li className='sceneItems' onClick={this.clickListItem}>{data.id + 1} : {this.displayType(data.type)}</li>
     )
