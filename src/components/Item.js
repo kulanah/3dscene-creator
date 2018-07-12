@@ -11,11 +11,16 @@ class Item extends React.Component{
     this.props.listItem(this.props.data.id);
   }
 
+  displayType(name){
+    let upper = name.charAt(0).toUpperCase() + name.substr(1);
+    return  upper 
+  }
+
   render(){
     let data = this.props.data;
     console.log(data);
     return (
-      <li onClick={this.clickListItem}>{data.id + 1} : {data.type}</li>
+      <li className='sceneItems' onClick={this.clickListItem}>{data.id + 1} : {this.displayType(data.type)}</li>
     )
   }
 } 
