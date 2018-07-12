@@ -17,19 +17,16 @@ class ThreeDScene extends React.Component{
   }
 
   selectItem(foo){
-    console.log('AHA the answer is ' + foo);
     this.setState({selectedItem: foo})
   }
-
-
 
   render(){
     return(
       <div>
         <Scene />
-        <VisibleToolBar selectedItem={this.state.selectedItem} />
+        <VisibleToolBar />
         <VisibleItemList selectItem={this.selectItem} />
-        <PropertiesBox />
+        <PropertiesBox selectedItem={this.state.selectedItem} />
       </div>
     )
   }
