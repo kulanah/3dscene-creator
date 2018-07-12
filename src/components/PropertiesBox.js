@@ -18,8 +18,8 @@ class PropertiesBox extends React.Component{
   displaySphere(item){
     return (
       <div>
-        <p>Sphere</p>
-        <p>Radius: {item.radius}</p>
+        <div className='propertiesRow'><span className='propertiesTitle'>Sphere</span></div>
+        <div className='propertiesRow'><span className='propertiesTitle'>Radius:</span><span>{item.radius}</span></div>
       </div>
     )
   }
@@ -27,9 +27,9 @@ class PropertiesBox extends React.Component{
   displayCylinder(item){
     return (
       <div>
-        <p>Cylinder</p> 
-        <p>Radius: {item.radius}</p>
-        <p>Height: {item.height}</p>
+        <div className='propertiesRow'><span className='propertiesTitle'>Cylinder</span></div>
+        <div className='propertiesRow'><span className='propertiesTitle'>Radius:</span><span>{item.radius}</span></div>
+        <div className='propertiesRow'><span className='propertiesTitle'>Height:</span><span>{item.height}</span></div>
       </div>
     )
   }
@@ -37,10 +37,10 @@ class PropertiesBox extends React.Component{
   displayBox(item){
     return (
       <div>
-        <p>Box:</p> 
-        <p>Length: {item.radius}</p>
-        <p>Width: {item.width}</p>
-        <p>Height: {item.height}</p>
+        <div className='propertiesRow'><span className='propertiesTitle'>Box:</span></div>
+        <div className='propertiesRow'><span className='propertiesTitle'>Length:</span><span>{item.length}</span></div>
+        <div className='propertiesRow'><span className='propertiesTitle'>Width:</span><span>{item.width}</span></div>
+        <div className='propertiesRow'><span className='propertiesTitle'>Height:</span><span>{item.height}</span></div>
       </div>
     )
   }
@@ -51,6 +51,8 @@ class PropertiesBox extends React.Component{
         return this.displaySphere(item);
       case 'cylinder':
         return this.displayCylinder(item);
+      case 'box': 
+        return this.displayBox(item);
       default:
         return (<p>{this.props.selectedItem}</p>)
     }
@@ -61,8 +63,7 @@ class PropertiesBox extends React.Component{
       return (<h5>Currently no selected object</h5>)
     } else {
       let item = store.getState().createItems[this.props.selectedItem];
-      console.log(item);
-      this.displayItem(item);
+      return this.displayItem(item);
     }
   }
 
@@ -70,7 +71,6 @@ class PropertiesBox extends React.Component{
     return (
       <div id='propertiesBoxDiv'>
         {this.selectItem()}
-
       </div>
     )
   }

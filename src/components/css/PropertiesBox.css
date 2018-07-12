@@ -7,3 +7,12 @@
   height: 20%;
   padding: 0.5em;
 }
+
+.propertiesTitle{
+  margin: 0;
+}
+
+.propertiesRow{
+  display:flex;
+  justify-content: space-between;
+}
