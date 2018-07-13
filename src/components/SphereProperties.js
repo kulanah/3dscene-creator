@@ -1,12 +1,11 @@
 import React from 'react';
 
-class BoxProperties extends React.Component{
+class SphereProperties extends React.Component{
   constructor(){
     super();
 
     this.updateHeight = this.updateHeight.bind(this);
-    this.updateWidth = this.updateWidth.bind(this);
-    this.updateLength = this.updateLength.bind(this);
+    this.updateRadius = this.updateRadius.bind(this);
   }
 
   updateHeight(event){
@@ -19,25 +18,14 @@ class BoxProperties extends React.Component{
     this.props.updateShapeProperties(updateItem);
   }
 
-  updateWidth(event){
+  updateRadius(event){
     let newVal = event.target.value;
     let updateItem = {
-      property: 'width',
+      property: 'radius',
       newVal: Number(newVal),
       id: this.props.item.id,
     }
     this.props.updateShapeProperties(updateItem);
-  }
-
-  updateLength(event){
-    let newVal = event.target.value;
-    let updateItem = {
-      property: 'length',
-      newVal: Number(newVal),
-      id: this.props.item.id,
-    }
-    this.props.updateShapeProperties(updateItem);
-
   }
 
   render(){
@@ -45,15 +33,11 @@ class BoxProperties extends React.Component{
     return(
       <div>
         <div className='propertiesRow'>
-          <span className='propertiesTitle'>Box</span>
+          <span className='propertiesTitle'>Sphere</span>
         </div>
         <div className='propertiesRow'>
-          <span className='propertiesTitle'>Length:</span>
-          <span><input className='propertiesNumInput' onChange={this.updateLength}type='number' value={item.length} /></span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Width:</span>
-          <span><input className='propertiesNumInput' onChange={this.updateWidth}type='number' value={item.width} /></span>
+          <span className='propertiesTitle'>Radius:</span>
+          <span><input className='propertiesNumInput' onChange={this.updateRadius}type='number' value={item.radius} /></span>
         </div>
         <div className='propertiesRow'>
           <span className='propertiesTitle'>Height:</span>
@@ -64,4 +48,4 @@ class BoxProperties extends React.Component{
   }
 }
 
-export { BoxProperties }
+export { SphereProperties }

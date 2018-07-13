@@ -4,6 +4,8 @@ import './css/PropertiesBox.css';
 import store from '../store';
 import VisibleBoxProperties from './VisibleBoxProperties';
 import VisibleConeProperties from './VisibleConeProperties';
+import VisibleCylinderProperties from './VisibleCylinderProperties';
+import VisibleSphereProperties from './VisibleSphereProperties';
 
 class PropertiesBox extends React.Component{
   constructor(){
@@ -13,60 +15,15 @@ class PropertiesBox extends React.Component{
     });
 
     this.selectItem = this.selectItem.bind(this);
-    this.displaySphere = this.displaySphere.bind(this)
-    this.displayCylinder = this.displayCylinder.bind(this)
-  }
-
-  displaySphere(id){
-    return (<VisibleBoxProperties id={id}/>)
-  }
-
-  displayCone(item){
-    return (
-      <div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Cylinder</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Radius:</span>
-          <span>{item.radius}</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Height:</span>
-          <span>{item.height}</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Radial Segments:</span>
-          <span>{item.radialSegments}</span>
-        </div>
-      </div>
-    )
-  }
-
-  displayCylinder(item){
-    return (
-      <div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Cylinder</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Radius:</span>
-          <span>{item.radius}</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Height:</span>
-          <span>{item.height}</span>
-        </div>
-      </div>
-    )
+    this.displayItem = this.displayItem.bind(this);
   }
 
   displayItem(item){
     switch (item.type){
       case 'sphere':
-        return this.displaySphere(item);
+        return <VisibleSphereProperties id={item.id} />
       case 'cylinder':
-        return this.displayCylinder(item);
+        return <VisibleCylinderProperties id={item.id} />
       case 'box': 
         return <VisibleBoxProperties id={item.id} />
       case 'cone':
