@@ -31,3 +31,12 @@ export function createCylinder(){
     id: currentID,
   }
 }
+
+export function updateShapeProperties(newVal){
+  return {
+    type: 'UPDATE_SHAPE_PROPERTY',
+    id: newVal.id,
+    newVal: newVal.newVal,
+    property: newVal.property
+  }
+}

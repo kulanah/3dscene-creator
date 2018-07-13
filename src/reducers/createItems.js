@@ -1,13 +1,13 @@
 let createItems = function(state = [], action){
   switch(action.type){
     case 'ADD_SPHERE': 
-      console.log(state);
       return [...state, {
         type: 'sphere',
         height: action.height,
         radius: action.radius,
         id: action.id,
       }];
+
     case 'ADD_CYLINDER':
       return [...state, {
         type: 'cylinder',
@@ -24,6 +24,12 @@ let createItems = function(state = [], action){
         length: action.length,
         id: action.id,
       }]
+
+    case 'UPDATE_SHAPE_PROPERTY': 
+      let newState = state.map(item => 
+        item.id === action.id ? {...item, [action.property]: action.newVal} : item);
+      return newState;
+
     default: 
       return state;
   }
