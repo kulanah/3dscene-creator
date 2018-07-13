@@ -3,6 +3,7 @@ import './css/PropertiesBox.css';
 
 import store from '../store';
 import VisibleBoxProperties from './VisibleBoxProperties';
+import VisibleConeProperties from './VisibleConeProperties';
 
 class PropertiesBox extends React.Component{
   constructor(){
@@ -60,28 +61,6 @@ class PropertiesBox extends React.Component{
     )
   }
 
-  displayBox(item){
-    return (
-      <div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Box:</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Length:</span>
-          <span><input className='propertiesNumInput' type='number' value={item.length} /></span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Width:</span>
-          <span><input className='propertiesNumInput' type='number' value={item.width} /></span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Height:</span>
-          <span><input className='propertiesNumInput' type='number' value={item.height} /></span>
-        </div>
-      </div>
-    )
-  }
-
   displayItem(item){
     switch (item.type){
       case 'sphere':
@@ -89,9 +68,9 @@ class PropertiesBox extends React.Component{
       case 'cylinder':
         return this.displayCylinder(item);
       case 'box': 
-        return <VisibleBoxProperties id={item.id}/>
+        return <VisibleBoxProperties id={item.id} />
       case 'cone':
-        return this.displayCone(item);
+        return <VisibleConeProperties id={item.id} />
       default:
         return (<p>{this.props.selectedItem}</p>)
     }
