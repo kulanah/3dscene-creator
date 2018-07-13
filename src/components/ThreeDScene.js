@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { Scene } from './Scene';
+import { Canvas } from './Canvas';
 import VisibleToolBar from './VisibleToolBar';
 import VisibleItemList from './VisibleItemList';
 import { PropertiesBox } from './PropertiesBox';
+
+import './css/ThreeDScene.css';
 
 class ThreeDScene extends React.Component{
   constructor(){
@@ -22,8 +25,8 @@ class ThreeDScene extends React.Component{
 
   render(){
     return(
-      <div>
-        <Scene />
+      <div id='reactDiv'>
+        <Canvas />
         <VisibleToolBar />
         <VisibleItemList selectItem={this.selectItem} />
         <PropertiesBox selectedItem={this.state.selectedItem} />
