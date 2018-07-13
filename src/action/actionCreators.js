@@ -21,6 +21,7 @@ export function createBox(){
     id: currentID,
   }
 }
+
 export function createCylinder(){
   console.log('inside action create cylinder');
   currentID += 1;
@@ -32,6 +33,18 @@ export function createCylinder(){
   }
 }
 
+export function createCone(){
+  console.log('inside action create cone');
+  currentID += 1;
+  return{
+    type: 'ADD_CONE',
+    height: 1,
+    radius: 1,
+    id: currentID,
+    radialSegments: 3,
+  }
+}
+/* Function to modify the shapes */
 export function updateShapeProperties(newVal){
   return {
     type: 'UPDATE_SHAPE_PROPERTY',

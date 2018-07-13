@@ -20,6 +20,28 @@ class PropertiesBox extends React.Component{
     return (<VisibleBoxProperties id={id}/>)
   }
 
+  displayCone(item){
+    return (
+      <div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Cylinder</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Radius:</span>
+          <span>{item.radius}</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Height:</span>
+          <span>{item.height}</span>
+        </div>
+        <div className='propertiesRow'>
+          <span className='propertiesTitle'>Radial Segments:</span>
+          <span>{item.radialSegments}</span>
+        </div>
+      </div>
+    )
+  }
+
   displayCylinder(item){
     return (
       <div>
@@ -68,6 +90,8 @@ class PropertiesBox extends React.Component{
         return this.displayCylinder(item);
       case 'box': 
         return <VisibleBoxProperties id={item.id}/>
+      case 'cone':
+        return this.displayCone(item);
       default:
         return (<p>{this.props.selectedItem}</p>)
     }
