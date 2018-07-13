@@ -1,7 +1,7 @@
 import React from 'react';
 
 class BoxProperties extends React.Component{
-  constructor(item){
+  constructor(){
     super();
 
     this.updateHeight = this.updateHeight.bind(this);

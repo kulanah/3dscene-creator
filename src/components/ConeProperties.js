@@ -1,13 +1,12 @@
 import React from 'react';
 
 class ConeProperties extends React.Component{
-  constructor(item){
+  constructor(){
     super();
 
     this.updateHeight = this.updateHeight.bind(this);
     this.updateRadius = this.updateRadius.bind(this);
     this.updateRadialSegments = this.updateRadialSegments.bind(this);
-
   }
 
   updateHeight(event){
