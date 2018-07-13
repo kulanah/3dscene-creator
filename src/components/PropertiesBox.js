@@ -2,6 +2,7 @@ import React from 'react';
 import './css/PropertiesBox.css';
 
 import store from '../store';
+import VisibleBoxProperties from './VisibleBoxProperties';
 
 class PropertiesBox extends React.Component{
   constructor(){
@@ -15,18 +16,8 @@ class PropertiesBox extends React.Component{
     this.displayCylinder = this.displayCylinder.bind(this)
   }
 
-  displaySphere(item){
-    return (
-      <div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Sphere</span>
-        </div>
-        <div className='propertiesRow'>
-          <span className='propertiesTitle'>Radius:</span>
-          <span><input className='propertiesNumInput' type='number' value={item.radius} /></span>
-        </div>
-      </div>
-    )
+  displaySphere(id){
+    return (<VisibleBoxProperties id={id}/>)
   }
 
   displayCylinder(item){
@@ -76,7 +67,7 @@ class PropertiesBox extends React.Component{
       case 'cylinder':
         return this.displayCylinder(item);
       case 'box': 
-        return this.displayBox(item);
+        return <VisibleBoxProperties id={item.id}/>
       default:
         return (<p>{this.props.selectedItem}</p>)
     }
