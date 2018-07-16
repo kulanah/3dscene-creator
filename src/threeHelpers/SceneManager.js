@@ -1,35 +1,34 @@
 import * as THREE from 'three';
 import SceneSubject from './SceneSubject';
 import GeneralLights from './GeneralLights';
+import OrbitControls from 'three-orbitcontrols';
 
 export default canvas => {
   const clock = new THREE.Clock();
-  const origin = new THREE.Vector3(0,0,0);
 
   const screenDimensions = {
     width: canvas.width,
     height: canvas.height
   }
 
-  const mousePosition = {
-    x: 0,
-    y: 0
-  }
-
   const scene = buildScene();
   const renderer = buildRender(screenDimensions);
   const camera = buildCamera(screenDimensions);
+  const controls = buildControls(camera, canvas);
   const sceneSubjects = createSceneSubjects(scene);
 
   function buildScene() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#FFF");
 
+    const gridHelper = new THREE.GridHelper(500, 50);
+    scene.add(gridHelper);
+
     return scene;
   }
 
   function buildRender({ width, height }) {
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); 
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas });
     const DPR = window.devicePixelRatio ? window.devicePixelRatio : 1;
     renderer.setPixelRatio(DPR);
     renderer.setSize(width, height);
@@ -40,15 +39,25 @@ export default canvas => {
     return renderer;
   }
 
+  function buildControls(camera){
+
+    const controls = new OrbitControls(camera, canvas);
+
+    controls.enableDamping = true;
+    controls.dampingFactor = 1;
+
+    return controls;
+  };
+
+
   function buildCamera({ width, height }) {
     const aspectRatio = width / height;
     const fieldOfView = 60;
-    const nearPlane = 4;
-    const farPlane = 100; 
+    const nearPlane = 0.1;
+    const farPlane = 500; 
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-    camera.position.z = 40;
-
+    camera.position.set(40,40,40);
     return camera;
   }
 
@@ -64,18 +73,13 @@ export default canvas => {
   function update() {
     const elapsedTime = clock.getElapsedTime();
 
-    for(let i=0; i<sceneSubjects.length; i++)
+    for(let i=0; i<sceneSubjects.length; i++){
       sceneSubjects[i].update(elapsedTime);
+    }
 
-    updateCameraPositionRelativeToMouse();
+    controls.update();
 
     renderer.render(scene, camera);
-  }
-
-  function updateCameraPositionRelativeToMouse() {
-    camera.position.x += (  (mousePosition.x * 0.01) - camera.position.x ) * 0.01;
-    camera.position.y += ( -(mousePosition.y * 0.01) - camera.position.y ) * 0.01;
-    camera.lookAt(origin);
   }
 
   function onWindowResize() {
@@ -90,14 +94,8 @@ export default canvas => {
     renderer.setSize(width, height);
   }
 
-  function onMouseMove(x, y) {
-    mousePosition.x = x;
-    mousePosition.y = y;
-  }
-
   return {
     update,
     onWindowResize,
-    onMouseMove
   }
 }
