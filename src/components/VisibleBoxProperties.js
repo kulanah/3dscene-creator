@@ -1,5 +1,4 @@
 import { BoxProperties } from './BoxProperties';
-import { updateBoxLength } from '../action/actionCreators';
 import { updateShapeProperties } from '../action/actionCreators';
 
 import { connect } from 'react-redux';

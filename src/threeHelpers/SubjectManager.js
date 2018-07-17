@@ -3,14 +3,13 @@ import * as THREE from "three";
 class SubjectManager {
   constructor(scene) {
     this.scene = scene;
-
+    this.meshArr = [];
   }
   
   clearOldState(){
-    for(var i = this.scene.children.length - 1; i >= 0; i--){
-      this.scene.children[i].remove();
+    while(this.meshArr[0]){
+      this.scene.remove(this.meshArr.shift());
     }
-
   }
 
   resetState(newState){
@@ -25,7 +24,7 @@ class SubjectManager {
 
     mesh.position.y = item.radius;
     this.scene.add(mesh);
-    console.log(item);
+    this.meshArr.push(mesh);
   }
 
   drawBox(item){
@@ -35,7 +34,7 @@ class SubjectManager {
 
     mesh.position.y = item.height / 2;
     this.scene.add(mesh);
-    console.log(item);
+    this.meshArr.push(mesh);
   }
 
   drawCylinder(item){
@@ -45,7 +44,7 @@ class SubjectManager {
 
     mesh.position.y = item.height / 2;
     this.scene.add(mesh);
-    console.log(item);
+    this.meshArr.push(mesh);
   }
 
 
@@ -55,10 +54,16 @@ class SubjectManager {
       switch(item.type){
         case 'sphere':
           this.drawSphere(item);
+          break;
         case 'box':
           this.drawBox(item);
+          break;
         case 'cylinder':
           this.drawCylinder(item);
+          break;
+        default:
+          console.log('test')
+
       }
     }
   }

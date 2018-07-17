@@ -49,7 +49,7 @@ class BoxProperties extends React.Component{
         </div>
         <div className='propertiesRow'>
           <span className='propertiesTitle'>Depth:</span>
-          <span><input className='propertiesNumInput' onChange={this.updateLength}type='number' value={item.depth} /></span>
+          <span><input className='propertiesNumInput' onChange={this.updateDepth}type='number' value={item.depth} /></span>
         </div>
         <div className='propertiesRow'>
           <span className='propertiesTitle'>Width:</span>
