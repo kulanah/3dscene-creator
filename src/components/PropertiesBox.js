@@ -45,6 +45,9 @@ class PropertiesBox extends React.Component{
   render(){
     return (
       <div id='propertiesBoxDiv'>
+        <div className='propertiesBoxHeader'>
+          Properties
+        </div>
         {this.selectItem()}
       </div>
     )
