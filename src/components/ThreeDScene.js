@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Scene } from './Scene';
 import { Canvas } from './Canvas';
 import VisibleToolBar from './VisibleToolBar';
 import VisibleItemList from './VisibleItemList';
@@ -26,7 +25,7 @@ class ThreeDScene extends React.Component{
   render(){
     return(
       <div id='reactDiv'>
-        <Canvas />
+        <Canvas items={this.props.items}/>
         <VisibleToolBar />
         <VisibleItemList selectItem={this.selectItem} />
         <PropertiesBox selectedItem={this.state.selectedItem} />
