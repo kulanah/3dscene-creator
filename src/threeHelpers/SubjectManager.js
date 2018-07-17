@@ -4,51 +4,65 @@ class SubjectManager {
   constructor(scene) {
     this.scene = scene;
 
-    this.init();
+  }
+  
+  clearOldState(){
+    for(var i = this.scene.children.length - 1; i >= 0; i--){
+      this.scene.children[i].remove();
+    }
+
   }
 
-  init() {
-    this.createBox();
-    this.createCylinder();
-    this.createSphere();
+  resetState(newState){
+    this.clearOldState();
+    this.addStateToScene(newState);
   }
 
-  createBox() {
-    let height = 5;
-    let width = 5;
-    let depth = 5;
-    var geometry = new THREE.BoxGeometry(height, width, depth);
-    var material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
-    var cube = new THREE.Mesh(geometry, material);
+  drawSphere(item){
+    let geo = new THREE.SphereGeometry(item.radius, 16, 16);
+    let mat = new THREE.MeshPhongMaterial({color: 0xff0000});
+    let mesh = new THREE.Mesh(geo, mat);
 
-    cube.position.y = height / 2;
-    this.scene.add(cube);
+    mesh.position.y = item.radius / 2;
+    this.scene.add(mesh);
+    console.log(item);
   }
 
-  createCylinder() {
-    let height = 5;
-    let radTop = 5;
-    let radBot = 5;
-    var geometry = new THREE.CylinderGeometry(radTop, radBot, height);
-    var material = new THREE.MeshPhongMaterial({ color: 0xff0000});
-    var cube = new THREE.Mesh(geometry, material);
+  drawBox(item){
+    let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
+    let mat = new THREE.MeshPhongMaterial({color: 0xff0000});
+    let mesh = new THREE.Mesh(geo, mat);
 
-    cube.position.y = height / 2;
-    cube.position.z = 13;
-    this.scene.add(cube);
+    mesh.position.y = item.height / 2;
+    this.scene.add(mesh);
+    console.log(item);
   }
 
-  createSphere(){
-    let radius = 5;
+  drawCylinder(item){
+    let geo = new THREE.CylinderGeometry(item.radius, item.radius, item.height);
+    let mat = new THREE.MeshPhongMaterial({color: 0xff0000});
+    let mesh = new THREE.Mesh(geo, mat);
 
-    var geometry = new THREE.SphereGeometry( radius, 32, 32 );
-    var material = new THREE.MeshPhongMaterial( {color: 0x0000ff} );
-    var sphere = new THREE.Mesh( geometry, material );
-
-    sphere.position.y = radius;
-    sphere.position.z = -13;
-    this.scene.add( sphere );
+    mesh.position.y = item.height / 2;
+    this.scene.add(mesh);
+    console.log(item);
   }
+
+
+  addStateToScene(newState){
+    for (let i = 0; i < newState.length; ++i){
+      let item = newState[i];
+      switch(item.type){
+        case 'sphere':
+          this.drawSphere(item);
+        case 'box':
+          this.drawBox(item);
+        case 'cylinder':
+          this.drawCylinder(item);
+      }
+    }
+  }
+
 }
 
 export { SubjectManager };

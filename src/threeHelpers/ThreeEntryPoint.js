@@ -15,7 +15,6 @@ class ThreeEntryPoint{
   init(){
     this.bindEventListeners();
     this.render();
-    this.subjectManager.init();
   }
 
   createCanvas(document, container) {
