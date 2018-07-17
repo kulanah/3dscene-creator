@@ -3,21 +3,28 @@ import SceneSubject from './SceneSubject';
 import GeneralLights from './GeneralLights';
 import OrbitControls from 'three-orbitcontrols';
 
-export default canvas => {
-  const clock = new THREE.Clock();
+class SceneManager{
+  constructor(canvas){
 
-  const screenDimensions = {
-    width: canvas.width,
-    height: canvas.height
+    this.clock = new THREE.Clock();
+   
+    this.canvas = canvas;
+
+    this.screenDimensions = {
+      width: canvas.width,
+      height: canvas.height
+    }
+    
+    this.scene = this.buildScene();
+    this.renderer = this.buildRender(this.screenDimensions);
+    this.camera = this.buildCamera(this.screenDimensions);
+    this.controls = this.buildControls(this.camera, this.canvas);
+    this.sceneSubjects = this.createSceneSubjects(this.scene);
+
+    this.getScene = this.getScene.bind(this);
   }
-
-  const scene = buildScene();
-  const renderer = buildRender(screenDimensions);
-  const camera = buildCamera(screenDimensions);
-  const controls = buildControls(camera, canvas);
-  const sceneSubjects = createSceneSubjects(scene);
-
-  function buildScene() {
+    
+  buildScene() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#FFF");
 
@@ -27,8 +34,8 @@ export default canvas => {
     return scene;
   }
 
-  function buildRender({ width, height }) {
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+  buildRender({ width, height }) {
+    const renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     const DPR = window.devicePixelRatio ? window.devicePixelRatio : 1;
     renderer.setPixelRatio(DPR);
     renderer.setSize(width, height);
@@ -39,9 +46,9 @@ export default canvas => {
     return renderer;
   }
 
-  function buildControls(camera){
+  buildControls(camera){
 
-    const controls = new OrbitControls(camera, canvas);
+    const controls = new OrbitControls(camera, this.canvas);
 
     controls.enableDamping = true;
     controls.dampingFactor = 1;
@@ -50,7 +57,7 @@ export default canvas => {
   };
 
 
-  function buildCamera({ width, height }) {
+  buildCamera({ width, height }) {
     const aspectRatio = width / height;
     const fieldOfView = 60;
     const nearPlane = 0.1;
@@ -61,7 +68,7 @@ export default canvas => {
     return camera;
   }
 
-  function createSceneSubjects(scene) {
+  createSceneSubjects(scene) {
     const sceneSubjects = [
       new GeneralLights(scene),
       new SceneSubject(scene)
@@ -70,32 +77,33 @@ export default canvas => {
     return sceneSubjects;
   }
 
-  function update() {
-    const elapsedTime = clock.getElapsedTime();
+  update() {
+    const elapsedTime = this.clock.getElapsedTime();
 
-    for(let i=0; i<sceneSubjects.length; i++){
-      sceneSubjects[i].update(elapsedTime);
+    for(let i=0; i < this.sceneSubjects.length; i++){
+      this.sceneSubjects[i].update(elapsedTime);
     }
 
-    controls.update();
+    this.controls.update();
 
-    renderer.render(scene, camera);
+    this.renderer.render(this.scene, this.camera);
   }
 
-  function onWindowResize() {
-    const { width, height } = canvas;
-    
-    screenDimensions.width = width;
-    screenDimensions.height = height;
-
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    
-    renderer.setSize(width, height);
+  getScene(){
+    return this.scene;
   }
 
-  return {
-    update,
-    onWindowResize,
+  onWindowResize() {
+    const { width, height } = this.canvas;
+    
+    this.screenDimensions.width = width;
+    this.screenDimensions.height = height;
+
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    
+    this.renderer.setSize(width, height);
   }
 }
+
+export { SceneManager } 

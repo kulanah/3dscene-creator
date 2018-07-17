@@ -1,23 +1,24 @@
 import React from 'react';
-import * as THREE from 'three';
-import threeEntryPoint from '../threeHelpers/threeEntryPoint';
+import { ThreeEntryPoint } from '../threeHelpers/ThreeEntryPoint';
 
 import './css/Canvas.css';
 
 class Canvas extends React.Component{
   constructor(){
     super();
-
-    this.init = this.init.bind(this);
-
-    // this.init();
   }
 
   componentDidMount(){
-    threeEntryPoint(this.threeRootElement);
+    this.threePoint = new ThreeEntryPoint(this.threeRootElement);
+    this.threePoint.init();
   }
 
-  init(){
+
+  createBox(){
+    // var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    // var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+    // var cube = new THREE.Mesh( geometry, material );
+    // this.scene.add( cube );
   }
 
   render(){
