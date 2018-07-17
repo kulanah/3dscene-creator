@@ -2,8 +2,6 @@ import React from 'react';
 import './css/ItemList.css';
 import { Item } from './Item.js';
 
-import store from '../store';
-
 class ItemList extends React.Component{
   constructor(){
     super();
