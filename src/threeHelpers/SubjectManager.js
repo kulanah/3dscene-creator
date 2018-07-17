@@ -23,7 +23,7 @@ class SubjectManager {
     let mat = new THREE.MeshPhongMaterial({color: 0xff0000});
     let mesh = new THREE.Mesh(geo, mat);
 
-    mesh.position.y = item.radius / 2;
+    mesh.position.y = item.radius;
     this.scene.add(mesh);
     console.log(item);
   }

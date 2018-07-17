@@ -4,8 +4,7 @@ export function createSphere(){
   currentID += 1;
   return{
     type: 'ADD_SPHERE',
-    height: 1,
-    radius: 1,
+    radius: 10,
     id: currentID,
   }
 }
@@ -15,9 +14,9 @@ export function createBox(){
   currentID += 1;
   return{
     type: 'ADD_BOX',
-    height: 1,
-    width: 1,
-    length: 1,
+    height: 10,
+    width: 10,
+    depth: 10,
     id: currentID,
   }
 }
@@ -27,8 +26,8 @@ export function createCylinder(){
   currentID += 1;
   return{
     type: 'ADD_CYLINDER',
-    height: 1,
-    radius: 1,
+    height: 10,
+    radius: 5,
     id: currentID,
   }
 }

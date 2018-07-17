@@ -6,7 +6,7 @@ class BoxProperties extends React.Component{
 
     this.updateHeight = this.updateHeight.bind(this);
     this.updateWidth = this.updateWidth.bind(this);
-    this.updateLength = this.updateLength.bind(this);
+    this.updateDepth = this.updateDepth.bind(this);
   }
 
   updateHeight(event){
@@ -29,10 +29,10 @@ class BoxProperties extends React.Component{
     this.props.updateShapeProperties(updateItem);
   }
 
-  updateLength(event){
+  updateDepth(event){
     let newVal = event.target.value;
     let updateItem = {
-      property: 'length',
+      property: 'depth',
       newVal: Number(newVal),
       id: this.props.item.id,
     }
@@ -48,8 +48,8 @@ class BoxProperties extends React.Component{
           <span className='propertiesTitle'>Box</span>
         </div>
         <div className='propertiesRow'>
-          <span className='propertiesTitle'>Length:</span>
-          <span><input className='propertiesNumInput' onChange={this.updateLength}type='number' value={item.length} /></span>
+          <span className='propertiesTitle'>Depth:</span>
+          <span><input className='propertiesNumInput' onChange={this.updateLength}type='number' value={item.depth} /></span>
         </div>
         <div className='propertiesRow'>
           <span className='propertiesTitle'>Width:</span>

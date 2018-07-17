@@ -3,7 +3,6 @@ let createItems = function(state = [], action){
     case 'ADD_SPHERE': 
       return [...state, {
         type: 'sphere',
-        height: action.height,
         radius: action.radius,
         id: action.id,
       }];
@@ -21,7 +20,7 @@ let createItems = function(state = [], action){
         type: 'box',
         height: action.height,
         width: action.width,
-        length: action.length,
+        depth: action.depth,
         id: action.id,
       }];
     
