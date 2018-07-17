@@ -1,0 +1,24 @@
+#propertiesBoxDiv{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 25%;
+  height: 20%;
+  padding: 0.5em;
+}
+
+.propertiesTitle{
+  margin: 0;
+}
+
+.propertiesRow{
+  margin-bottom: 0.2em;
+  display:flex;
+  justify-content: space-between;
+}
+
+
+.propertiesNumInput{
+  width: 4em;
+}

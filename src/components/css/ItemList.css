@@ -1,0 +1,16 @@
+#itemListDiv{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1px red solid;
+  width: 30%;
+  padding: 1em;
+  height: 15%;
+  overflow-y: scroll;
+}
+
+#itemListDiv > ul{
+  list-style: none;
+  margin-top:0;
+  margin-bottom:0;
+}

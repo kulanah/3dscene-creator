@@ -1,8 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+//react components
+import VisibleThreeDScene from './components/VisibleThreeDScene';
+
+import { Provider } from 'react-redux';
+
+import store from './store';
+
+const router = (
+  <Provider store={store}>
+    <div id='sceneDiv'>
+      <VisibleThreeDScene/>
+    </div>
+  </Provider>
+);
+
+ReactDOM.render(router, document.getElementById('root'));
