@@ -39,6 +39,10 @@ class ThreeEntryPoint{
     this.sceneManager.onWindowResize()
   }
 
+  updateState(newItems){
+    this.subjectManager.resetState(newItems);
+  }
+
   render() {
     requestAnimationFrame(this.render);
     this.sceneManager.update();
