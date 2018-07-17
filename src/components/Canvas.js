@@ -13,6 +13,10 @@ class Canvas extends React.Component{
     this.threePoint.init();
   }
 
+  componentDidUpdate(){
+    this.threePoint.updateState(this.props.items);
+  }
+
 
   createBox(){
     // var geometry = new THREE.BoxGeometry( 1, 1, 1 );
