@@ -26,8 +26,6 @@ class PropertiesBox extends React.Component{
         return <VisibleCylinderProperties id={item.id} />
       case 'box': 
         return <VisibleBoxProperties id={item.id} />
-      case 'cone':
-        return <VisibleConeProperties id={item.id} />
       default:
         return (<p>{this.props.selectedItem}</p>)
     }
