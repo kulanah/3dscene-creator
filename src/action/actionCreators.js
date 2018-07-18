@@ -1,39 +1,70 @@
 let currentID = -1;
+
+
 export function createSphere(){
-  console.log('inside action create sphere');
+  let radius = 5;
+
+  let x = 0;
+  let y = radius;
+  let z = 0;
+
   currentID += 1;
   return{
     type: 'ADD_SPHERE',
-    radius: 10,
+    radius: radius,
+    x: x,
+    y: y,
+    z: z,
     id: currentID,
   }
 }
 
+
 export function createBox(){
-  console.log('inside action create box');
+  let height = 10;
+  let width = 10;
+  let depth = 10;
+
+  let x = 0;
+  let y = height / 2;
+  let z = 0;
+
   currentID += 1;
   return{
     type: 'ADD_BOX',
-    height: 10,
-    width: 10,
-    depth: 10,
+    height: height,
+    width: width,
+    depth: depth,
+    x: x, 
+    y: y,
+    z: z,
     id: currentID,
   }
 }
 
+
 export function createCylinder(){
-  console.log('inside action create cylinder');
+  let height = 10;
+  let radius = 5;
+
+  let x = 0;
+  let y = height / 2;
+  let z = 0;
+
   currentID += 1;
   return{
     type: 'ADD_CYLINDER',
-    height: 10,
-    radius: 5,
+    height: height,
+    radius: radius,
+    x: x,
+    y: y,
+    z: z,
     id: currentID,
   }
 }
 
 export function createCone(){
-  console.log('inside action create cone');
+
   currentID += 1;
   return{
     type: 'ADD_CONE',
@@ -43,6 +74,7 @@ export function createCone(){
     radialSegments: 3,
   }
 }
+
 /* Function to modify the shapes */
 export function updateShapeProperties(newVal){
   return {

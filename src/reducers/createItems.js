@@ -4,6 +4,9 @@ let createItems = function(state = [], action){
       return [...state, {
         type: 'sphere',
         radius: action.radius,
+        x: action.x,
+        y: action.y,
+        z: action.z,
         id: action.id,
       }];
 
@@ -12,6 +15,9 @@ let createItems = function(state = [], action){
         type: 'cylinder',
         height: action.height, 
         radius: action.radius,
+        x: action.x,
+        y: action.y,
+        z: action.z,
         id: action.id,
       }];
 
@@ -21,6 +27,9 @@ let createItems = function(state = [], action){
         height: action.height,
         width: action.width,
         depth: action.depth,
+        x: action.x,
+        y: action.y,
+        z: action.z,
         id: action.id,
       }];
     
