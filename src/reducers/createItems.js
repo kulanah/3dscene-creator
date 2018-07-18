@@ -4,6 +4,9 @@ let createItems = function(state = [], action){
       return [...state, {
         type: 'sphere',
         radius: action.radius,
+        x: action.x,
+        y: action.y,
+        z: action.z,
         id: action.id,
       }];
 
@@ -12,6 +15,9 @@ let createItems = function(state = [], action){
         type: 'cylinder',
         height: action.height, 
         radius: action.radius,
+        x: action.x,
+        y: action.y,
+        z: action.z,
         id: action.id,
       }];
 
@@ -21,18 +27,12 @@ let createItems = function(state = [], action){
         height: action.height,
         width: action.width,
         depth: action.depth,
+        x: action.x,
+        y: action.y,
+        z: action.z,
         id: action.id,
       }];
     
-    case 'ADD_CONE':
-      return [...state, {
-        type: 'cone',
-        height: action.height,
-        radius: action.radius, 
-        radialSegments: action.radialSegments,
-        id: action.id,
-      }];
-
     case 'UPDATE_SHAPE_PROPERTY': 
       let newState = state.map(item => 
         item.id === action.id ? {...item, [action.property]: action.newVal} : item);

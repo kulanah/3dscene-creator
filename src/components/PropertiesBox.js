@@ -3,9 +3,9 @@ import './css/PropertiesBox.css';
 
 import store from '../store';
 import VisibleBoxProperties from './VisibleBoxProperties';
-import VisibleConeProperties from './VisibleConeProperties';
 import VisibleCylinderProperties from './VisibleCylinderProperties';
 import VisibleSphereProperties from './VisibleSphereProperties';
+
 
 class PropertiesBox extends React.Component{
   constructor(){
@@ -18,29 +18,33 @@ class PropertiesBox extends React.Component{
     this.displayItem = this.displayItem.bind(this);
   }
 
+
   displayItem(item){
     switch (item.type){
       case 'sphere':
-        return <VisibleSphereProperties id={item.id} />
+        return <VisibleSphereProperties id={item.id} />;
+        
       case 'cylinder':
-        return <VisibleCylinderProperties id={item.id} />
+        return <VisibleCylinderProperties id={item.id} />;
+
       case 'box': 
-        return <VisibleBoxProperties id={item.id} />
-      case 'cone':
-        return <VisibleConeProperties id={item.id} />
+        return <VisibleBoxProperties id={item.id} />;
+        
       default:
-        return (<p>{this.props.selectedItem}</p>)
+        return (<p>{this.props.selectedItem}</p>);
     }
   }
 
+
   selectItem(){
     if (this.props.selectedItem < 0){
-      return (<h5>Currently no selected object</h5>)
+      return (<h5>Currently no selected object</h5>);
     } else {
       let item = store.getState().createItems[this.props.selectedItem];
       return this.displayItem(item);
     }
   }
+
 
   render(){
     return (
@@ -50,8 +54,9 @@ class PropertiesBox extends React.Component{
         </div>
         {this.selectItem()}
       </div>
-    )
+    );
   }
 }
+
 
 export { PropertiesBox };
