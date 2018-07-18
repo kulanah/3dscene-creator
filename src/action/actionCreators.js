@@ -63,17 +63,6 @@ export function createCylinder(){
   }
 }
 
-export function createCone(){
-
-  currentID += 1;
-  return{
-    type: 'ADD_CONE',
-    height: 1,
-    radius: 1,
-    id: currentID,
-    radialSegments: 3,
-  }
-}
 
 /* Function to modify the shapes */
 export function updateShapeProperties(newVal){

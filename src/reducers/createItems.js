@@ -33,15 +33,6 @@ let createItems = function(state = [], action){
         id: action.id,
       }];
     
-    case 'ADD_CONE':
-      return [...state, {
-        type: 'cone',
-        height: action.height,
-        radius: action.radius, 
-        radialSegments: action.radialSegments,
-        id: action.id,
-      }];
-
     case 'UPDATE_SHAPE_PROPERTY': 
       let newState = state.map(item => 
         item.id === action.id ? {...item, [action.property]: action.newVal} : item);
