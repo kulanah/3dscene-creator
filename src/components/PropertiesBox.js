@@ -3,7 +3,6 @@ import './css/PropertiesBox.css';
 
 import store from '../store';
 import VisibleBoxProperties from './VisibleBoxProperties';
-import VisibleConeProperties from './VisibleConeProperties';
 import VisibleCylinderProperties from './VisibleCylinderProperties';
 import VisibleSphereProperties from './VisibleSphereProperties';
 
