@@ -17,6 +17,7 @@ class PropertiesBox extends React.Component{
     this.displayItem = this.displayItem.bind(this);
   }
 
+
   displayItem(item){
     switch (item.type){
       case 'sphere':
@@ -30,6 +31,7 @@ class PropertiesBox extends React.Component{
     }
   }
 
+
   selectItem(){
     if (this.props.selectedItem < 0){
       return (<h5>Currently no selected object</h5>)
@@ -38,6 +40,7 @@ class PropertiesBox extends React.Component{
       return this.displayItem(item);
     }
   }
+
 
   render(){
     return (
@@ -50,5 +53,6 @@ class PropertiesBox extends React.Component{
     )
   }
 }
+
 
 export { PropertiesBox };
