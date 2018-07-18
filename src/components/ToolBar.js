@@ -13,7 +13,7 @@ class ToolBar extends React.Component{
         <div onClick={this.props.createBox} className='shapeDiv'>Box</div>
         <div onClick={this.props.createSphere} className='shapeDiv'>Sphere</div>
         <div onClick={this.props.createCylinder} className='shapeDiv'>Cylinder</div>
-        <div onClick={this.props.createCone} className='shapeDiv'>Cone</div>
+        {/* <div onClick={this.props.createCone} className='shapeDiv'>Cone</div> */}
       </div>
     )
   }
