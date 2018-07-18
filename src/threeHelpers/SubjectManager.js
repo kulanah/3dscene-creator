@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 
 class SubjectManager {
   constructor(scene) {
@@ -51,23 +51,25 @@ class SubjectManager {
   addStateToScene(newState){
     for (let i = 0; i < newState.length; ++i){
       let item = newState[i];
+
       switch(item.type){
         case 'sphere':
           this.drawSphere(item);
           break;
+
         case 'box':
           this.drawBox(item);
           break;
+
         case 'cylinder':
           this.drawCylinder(item);
           break;
-        default:
-          console.log('test')
 
+        default:
+          break;
       }
     }
   }
-
 }
 
 export { SubjectManager };
