@@ -21,8 +21,11 @@ class SubjectManager {
     let geo = new THREE.SphereGeometry(item.radius, 16, 16);
     let mat = new THREE.MeshPhongMaterial({color: 0x003c8f});
     let mesh = new THREE.Mesh(geo, mat);
+    
+    mesh.position.x = item.x;
+    mesh.position.y = item.y;
+    mesh.position.z = item.z;
 
-    mesh.position.y = item.radius;
     this.scene.add(mesh);
     this.meshArr.push(mesh);
   }
@@ -31,8 +34,11 @@ class SubjectManager {
     let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
     let mat = new THREE.MeshPhongMaterial({color: 0x003c8f});
     let mesh = new THREE.Mesh(geo, mat);
+    
+    mesh.position.x = item.x;
+    mesh.position.y = item.y;
+    mesh.position.z = item.z;
 
-    mesh.position.y = item.height / 2;
     this.scene.add(mesh);
     this.meshArr.push(mesh);
   }
@@ -41,8 +47,11 @@ class SubjectManager {
     let geo = new THREE.CylinderGeometry(item.radius, item.radius, item.height);
     let mat = new THREE.MeshPhongMaterial({color: 0x003c8f});
     let mesh = new THREE.Mesh(geo, mat);
+    
+    mesh.position.x = item.x;
+    mesh.position.y = item.y;
+    mesh.position.z = item.z;
 
-    mesh.position.y = item.height / 2;
     this.scene.add(mesh);
     this.meshArr.push(mesh);
   }
