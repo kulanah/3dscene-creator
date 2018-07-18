@@ -2,10 +2,20 @@
   position: absolute;
   top: 0;
   right: 0;
-  border: 1px solid black;
-  width: 25%;
-  height: 20%;
-  padding: 0.5em;
+  width: 30%;
+  min-height: 20%;
+  background: #eee;
+  box-shadow: 3px 2px 10px #222;
+}
+
+.propertiesBoxHeader{
+  border-top: 0.75em solid #003c8f;
+  padding-left: 0.5em;
+  padding-bottom: 0.1em;
+  padding-top: 0.1em;
+  background: #1565c0;
+  color: white;
+  margin-bottom: 0.5em;
 }
 
 .propertiesTitle{
@@ -16,6 +26,12 @@
   margin-bottom: 0.2em;
   display:flex;
   justify-content: space-between;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+#propertiesBoxDiv > h5{
+  padding-left: 0.75em;
 }
 
 

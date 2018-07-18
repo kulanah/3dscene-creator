@@ -27,7 +27,13 @@ class ItemList extends React.Component{
 
   render(){
     return (
-      <div id='itemListDiv'>{this.displayItems()}</div>
+      <div id='itemListDiv'>
+        <div className='itemListHeader'>Item List</div>
+        <div id='itemListContent'>
+          {this.displayItems()}
+
+        </div>
+      </div>
     )
   }
 }
