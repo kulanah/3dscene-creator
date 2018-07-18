@@ -16,7 +16,7 @@ export function createSphere(){
     y: y,
     z: z,
     id: currentID,
-  }
+  };
 }
 
 
@@ -39,7 +39,7 @@ export function createBox(){
     y: y,
     z: z,
     id: currentID,
-  }
+  };
 }
 
 
@@ -60,7 +60,7 @@ export function createCylinder(){
     y: y,
     z: z,
     id: currentID,
-  }
+  };
 }
 
 
@@ -71,5 +71,5 @@ export function updateShapeProperties(newVal){
     id: newVal.id,
     newVal: newVal.newVal,
     property: newVal.property
-  }
+  };
 }
