@@ -34,13 +34,21 @@ let createItems = function(state = [], action){
       }];
     
     case 'UPDATE_SHAPE_PROPERTY': 
-      let newState = state.map(item => 
+      return state.map(item => 
         item.id === action.id ? {...item, [action.property]: action.newVal} : item);
-      return newState;
+    
+    case 'DELETE_ITEM':
+      return [...state].filter(listItem => {
+        return listItem.id !== action.id;
+      }).map((item, i)=>{
+        let newItem = {...item};
+        newItem.id = i;
+        return newItem;
+      });
 
     default: 
       return state;
   }
-}
+};
 
-export { createItems }
+export { createItems };

@@ -73,3 +73,12 @@ export function updateShapeProperties(newVal){
     property: newVal.property
   };
 }
+
+export function deleteItem(id){
+  currentID -= 1;
+  return{
+    type: 'DELETE_ITEM',
+    id: id,
+  };
+
+}

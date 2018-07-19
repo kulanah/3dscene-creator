@@ -13,13 +13,13 @@ class ThreeDScene extends React.Component{
 
     this.state = {
       selectedItem: -1,
-    }
+    };
 
     this.selectItem = this.selectItem.bind(this);
   }
 
-  selectItem(foo){
-    this.setState({selectedItem: foo})
+  selectItem(item){
+    this.setState({selectedItem: item});
   }
 
   render(){

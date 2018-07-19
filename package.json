@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint-config-react-app": "^2.1.0",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-import": "^2.13.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -22,6 +19,9 @@
   },
   "devDependencies": {
     "eslint": "^5.1.0",
-    "eslint-plugin-react": "^7.10.0"
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.13.0"
   }
 }
