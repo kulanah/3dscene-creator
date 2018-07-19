@@ -1,0 +1,13 @@
+.trashIcon{
+  height: 1em;
+}
+
+.trashIcon:hover{
+  cursor: pointer;
+}
+
+.sceneItems{
+  display:flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
