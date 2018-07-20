@@ -6,9 +6,6 @@
 # testing
 /coverage
 
-# production
-/build
-
 #editor stuff
 /.vscode
 
