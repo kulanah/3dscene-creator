@@ -28,9 +28,9 @@ class Canvas extends React.Component{
   render(){
     return(
       <div id='canvasDiv' ref={element => this.threeRootElement = element} />
-    )
+    );
 
   }
 }
 
-export { Canvas }
+export { Canvas };

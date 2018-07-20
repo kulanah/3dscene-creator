@@ -103,4 +103,4 @@ class CylinderProperties extends React.Component{
   }
 }
 
-export { CylinderProperties }
+export { CylinderProperties };

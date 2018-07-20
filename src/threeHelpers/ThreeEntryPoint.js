@@ -49,4 +49,4 @@ class ThreeEntryPoint{
   }
 }
 
-export { ThreeEntryPoint }
+export { ThreeEntryPoint };

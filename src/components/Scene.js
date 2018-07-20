@@ -8,7 +8,7 @@ class Scene extends React.Component{
   render(){
     return (
       <div>TEST</div>
-    )
+    );
   }
 }
 

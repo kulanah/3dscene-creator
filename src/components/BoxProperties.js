@@ -108,4 +108,4 @@ class BoxProperties extends React.Component{
   }
 }
 
-export { BoxProperties }
+export { BoxProperties };
