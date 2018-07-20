@@ -7,27 +7,28 @@ class ThreeEntryPoint{
     this.sceneManager = new SceneManager(this.canvas);
     this.subjectManager = new SubjectManager(this.sceneManager.getScene());
 
+    
     this.render = this.render.bind(this);
-
+    this.resizeCanvas = this.resizeCanvas.bind(this);
     this.init = this.init.bind(this);
   }
-
+  
   init(){
     this.bindEventListeners();
     this.render();
   }
-
+  
   createCanvas(document, container) {
     let canvas = document.createElement('canvas');     
     container.appendChild(canvas);
     return canvas;
   }
-
+  
   bindEventListeners() {
     window.onresize = this.resizeCanvas;
     this.resizeCanvas();	
   }
-
+  
   resizeCanvas() {        
     this.canvas.style.width = '100%';
     this.canvas.style.height= '100%';
@@ -35,7 +36,7 @@ class ThreeEntryPoint{
     this.canvas.width  = this.canvas.offsetWidth;
     this.canvas.height = this.canvas.offsetHeight;
 
-    this.sceneManager.onWindowResize()
+    this.sceneManager.onWindowResize();
   }
 
   updateState(newItems){
