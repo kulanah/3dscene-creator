@@ -7,7 +7,7 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
-        id: action.id,
+        id: state.length,
       }];
 
     case 'ADD_CYLINDER':
@@ -18,7 +18,7 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
-        id: action.id,
+        id: state.length,
       }];
 
     case 'ADD_BOX':
@@ -30,7 +30,7 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
-        id: action.id,
+        id: state.length,
       }];
     
     case 'UPDATE_SHAPE_PROPERTY': 
