@@ -17,7 +17,7 @@ class SphereProperties extends React.Component{
       property: 'radius',
       newVal: Number(newVal),
       id: this.props.item.id,
-    }
+    };
     this.props.updateShapeProperties(updateItem);
   }
 
@@ -80,4 +80,4 @@ class SphereProperties extends React.Component{
   }
 }
 
-export { SphereProperties }
+export { SphereProperties };

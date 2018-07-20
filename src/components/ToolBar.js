@@ -2,10 +2,6 @@ import React from 'react';
 import './css/ToolBar.css';
 
 class ToolBar extends React.Component{
-  constructor(){
-    super();
-  }
-
   render(){
     return (
       <div id='toolBarDiv'>

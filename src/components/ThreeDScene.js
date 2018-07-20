@@ -30,7 +30,7 @@ class ThreeDScene extends React.Component{
         <VisibleItemList selectItem={this.selectItem} />
         <PropertiesBox selectedItem={this.state.selectedItem} />
       </div>
-    )
+    );
   }
 }
 

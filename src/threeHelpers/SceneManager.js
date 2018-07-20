@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import SceneSubject from './SceneSubject';
 import GeneralLights from './GeneralLights';
 import OrbitControls from 'three-orbitcontrols';
 
@@ -71,7 +70,6 @@ class SceneManager{
   createSceneSubjects(scene) {
     const sceneSubjects = [
       new GeneralLights(scene),
-      new SceneSubject(scene)
     ];
 
     return sceneSubjects;

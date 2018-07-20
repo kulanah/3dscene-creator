@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/ItemList.css';
-import { Item } from './Item.js';
+import { Item } from './Item';
 
 class ItemList extends React.Component{
   constructor(){
@@ -34,7 +34,7 @@ class ItemList extends React.Component{
 
         </div>
       </div>
-    )
+    );
   }
 }
 
