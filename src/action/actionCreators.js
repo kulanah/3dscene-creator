@@ -70,5 +70,11 @@ export function deleteItem(id){
     type: 'DELETE_ITEM',
     id: id,
   };
+}
 
+export function selectItem(id){
+  return {
+    type: 'SELECT_ITEM',
+    id: id,
+  };
 }
