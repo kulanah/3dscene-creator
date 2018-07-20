@@ -12,7 +12,7 @@ class Item extends React.Component{
   }
 
   clickListItem(){
-    this.props.listItem(this.props.data.id);
+    this.props.selectItem(this.props.data.id);
   }
 
   clickDelete(){

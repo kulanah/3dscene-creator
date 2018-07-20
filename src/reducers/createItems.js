@@ -7,7 +7,8 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
-        id: action.id,
+        selected: false,
+        id: state.length,
       }];
 
     case 'ADD_CYLINDER':
@@ -18,7 +19,8 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
-        id: action.id,
+        selected: false,
+        id: state.length,
       }];
 
     case 'ADD_BOX':
@@ -30,7 +32,8 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
-        id: action.id,
+        selected: false,
+        id: state.length,
       }];
     
     case 'UPDATE_SHAPE_PROPERTY': 
@@ -44,6 +47,19 @@ let createItems = function(state = [], action){
         let newItem = {...item};
         newItem.id = i;
         return newItem;
+      });
+
+    case 'SELECT_ITEM': 
+      return [...state].map(item => {
+        if (item.id == action.id){
+          let newItem = {...item};
+          newItem.selected = true;
+          return newItem;
+        } else {
+          let newItem = {...item};
+          newItem.selected = false;
+          return newItem;
+        }
       });
 
     default: 

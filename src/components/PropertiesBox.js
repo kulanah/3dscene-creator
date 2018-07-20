@@ -11,7 +11,6 @@ class PropertiesBox extends React.Component{
   constructor(){
     super();
     this.state = ({
-      selectedObject: -1,
     });
 
     this.selectItem = this.selectItem.bind(this);
@@ -35,18 +34,31 @@ class PropertiesBox extends React.Component{
     }
   }
 
+  checkIfAnySelected(){
+    let state = store.getState();
+    let selected = state.createItems.filter(item => {
+      if (item.selected === true){
+        return item;
+      } 
+    });
+
+    return selected[0];
+  }
+
 
   selectItem(){
-    if (this.props.selectedItem < 0){
+    let selected = this.checkIfAnySelected();
+
+    if (!selected){
       return (<h5>Currently no selected object</h5>);
     } else {
-      let item = store.getState().createItems[this.props.selectedItem];
-      return this.displayItem(item);
+      return this.displayItem(selected);
     }
   }
 
 
   render(){
+    this.checkIfAnySelected();
     return (
       <div id='propertiesBoxDiv'>
         <div className='propertiesBoxHeader'>

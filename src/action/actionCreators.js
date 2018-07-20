@@ -1,6 +1,3 @@
-let currentID = -1;
-
-
 export function createSphere(){
   let radius = 5;
 
@@ -8,14 +5,12 @@ export function createSphere(){
   let y = radius;
   let z = 0;
 
-  currentID += 1;
   return{
     type: 'ADD_SPHERE',
     radius: radius,
     x: x,
     y: y,
     z: z,
-    id: currentID,
   };
 }
 
@@ -29,7 +24,6 @@ export function createBox(){
   let y = height / 2;
   let z = 0;
 
-  currentID += 1;
   return{
     type: 'ADD_BOX',
     height: height,
@@ -38,7 +32,6 @@ export function createBox(){
     x: x, 
     y: y,
     z: z,
-    id: currentID,
   };
 }
 
@@ -51,7 +44,6 @@ export function createCylinder(){
   let y = height / 2;
   let z = 0;
 
-  currentID += 1;
   return{
     type: 'ADD_CYLINDER',
     height: height,
@@ -59,7 +51,6 @@ export function createCylinder(){
     x: x,
     y: y,
     z: z,
-    id: currentID,
   };
 }
 
@@ -75,10 +66,15 @@ export function updateShapeProperties(newVal){
 }
 
 export function deleteItem(id){
-  currentID -= 1;
   return{
     type: 'DELETE_ITEM',
     id: id,
   };
+}
 
+export function selectItem(id){
+  return {
+    type: 'SELECT_ITEM',
+    id: id,
+  };
 }

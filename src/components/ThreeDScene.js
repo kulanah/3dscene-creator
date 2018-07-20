@@ -14,12 +14,6 @@ class ThreeDScene extends React.Component{
     this.state = {
       selectedItem: -1,
     };
-
-    this.selectItem = this.selectItem.bind(this);
-  }
-
-  selectItem(item){
-    this.setState({selectedItem: item});
   }
 
   render(){
@@ -27,7 +21,7 @@ class ThreeDScene extends React.Component{
       <div id='reactDiv'>
         <Canvas items={this.props.items}/>
         <VisibleToolBar />
-        <VisibleItemList selectItem={this.selectItem} />
+        <VisibleItemList />
         <PropertiesBox selectedItem={this.state.selectedItem} />
       </div>
     );

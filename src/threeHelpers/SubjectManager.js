@@ -4,6 +4,9 @@ class SubjectManager {
   constructor(scene) {
     this.scene = scene;
     this.meshArr = [];
+    this.selectedMesh;
+    this.shapeMaterial = new THREE.MeshPhongMaterial({color: 0x003c8f});
+    this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
   }
   
   clearOldState(){
@@ -17,10 +20,64 @@ class SubjectManager {
     this.addStateToScene(newState);
   }
 
+  drawBoxBounding(item){
+    if (this.selectedMesh){
+      this.scene.remove(this.selectedMesh);
+      this.selectedMesh = '';
+    }
+
+    let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, 4, 4, 4);
+
+    let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
+    
+    boundingMesh.position.x = item.x;
+    boundingMesh.position.y = item.y;
+    boundingMesh.position.z = item.z;
+
+    this.scene.add(boundingMesh);
+    this.selectedMesh = boundingMesh;
+  }
+
+  drawCylinderBounding(item){
+    if (this.selectedMesh){
+      this.scene.remove(this.selectedMesh);
+      this.selectedMesh = '';
+    }
+
+    let boundingGeo = new THREE.CylinderGeometry(item.radius, item.radius, item.height, 24, 1);
+
+    let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
+    
+    boundingMesh.position.x = item.x;
+    boundingMesh.position.y = item.y;
+    boundingMesh.position.z = item.z;
+
+    this.scene.add(boundingMesh);
+    this.selectedMesh = boundingMesh;
+  }
+
+  drawSphereBounding(item){
+    if (this.selectedMesh){
+      this.scene.remove(this.selectedMesh);
+      this.selectedMesh = '';
+    }
+
+    let boundingGeo = new THREE.SphereGeometry(item.radius, 16, 16);
+
+    let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
+    
+    boundingMesh.position.x = item.x;
+    boundingMesh.position.y = item.y;
+    boundingMesh.position.z = item.z;
+
+    this.scene.add(boundingMesh);
+    this.selectedMesh = boundingMesh;
+
+  }
+
   drawSphere(item){
     let geo = new THREE.SphereGeometry(item.radius, 16, 16);
-    let mat = new THREE.MeshPhongMaterial({color: 0x003c8f});
-    let mesh = new THREE.Mesh(geo, mat);
+    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
     
     mesh.position.x = item.x;
     mesh.position.y = item.y;
@@ -32,8 +89,7 @@ class SubjectManager {
 
   drawBox(item){
     let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
-    let mat = new THREE.MeshPhongMaterial({color: 0x003c8f});
-    let mesh = new THREE.Mesh(geo, mat);
+    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
     
     mesh.position.x = item.x;
     mesh.position.y = item.y;
@@ -45,8 +101,7 @@ class SubjectManager {
 
   drawCylinder(item){
     let geo = new THREE.CylinderGeometry(item.radius, item.radius, item.height);
-    let mat = new THREE.MeshPhongMaterial({color: 0x003c8f});
-    let mesh = new THREE.Mesh(geo, mat);
+    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
     
     mesh.position.x = item.x;
     mesh.position.y = item.y;
@@ -64,14 +119,25 @@ class SubjectManager {
       switch(item.type){
         case 'sphere':
           this.drawSphere(item);
+          if (item.selected === true){
+            console.log('this sphere is selected');
+            this.drawSphereBounding(item);
+          }
           break;
 
         case 'box':
           this.drawBox(item);
+          if (item.selected === true){
+            console.log('this sphere is selected');
+            this.drawBoxBounding(item);
+          }
           break;
 
         case 'cylinder':
           this.drawCylinder(item);
+          if (item.selected === true){
+            this.drawCylinderBounding(item);
+          }
           break;
 
         default:
