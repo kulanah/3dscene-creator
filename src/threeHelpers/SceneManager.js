@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import GeneralLights from './GeneralLights';
 import OrbitControls from 'three-orbitcontrols';
 
+import store from '../store';
+import { selectItem } from '../action/actionCreators';
+
 class SceneManager{
   constructor(canvas){
 
@@ -12,7 +15,7 @@ class SceneManager{
     this.screenDimensions = {
       width: canvas.width,
       height: canvas.height
-    }
+    };
     
     this.scene = this.buildScene();
     this.renderer = this.buildRender(this.screenDimensions);
@@ -20,12 +23,15 @@ class SceneManager{
     this.controls = this.buildControls(this.camera, this.canvas);
     this.sceneSubjects = this.createSceneSubjects(this.scene);
 
+    this.getNormalizedMouseXY = this.getNormalizedMouseXY.bind(this);
+    this.selectItem = selectItem;
+    this.onSceneClick = this.onSceneClick.bind(this);
     this.getScene = this.getScene.bind(this);
   }
     
   buildScene() {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("#FFF");
+    scene.background = new THREE.Color('#FFF');
 
     const gridHelper = new THREE.GridHelper(500, 50);
     scene.add(gridHelper);
@@ -53,7 +59,7 @@ class SceneManager{
     controls.dampingFactor = 1;
 
     return controls;
-  };
+  }
 
 
   buildCamera({ width, height }) {
@@ -75,10 +81,10 @@ class SceneManager{
     return sceneSubjects;
   }
 
-  update() {
+  update(){
     const elapsedTime = this.clock.getElapsedTime();
 
-    for(let i=0; i < this.sceneSubjects.length; i++){
+    for(let i = 0; i < this.sceneSubjects.length; i++){
       this.sceneSubjects[i].update(elapsedTime);
     }
 
@@ -91,7 +97,7 @@ class SceneManager{
     return this.scene;
   }
 
-  onWindowResize() {
+  onWindowResize(){
     const { width, height } = this.canvas;
     
     this.screenDimensions.width = width;
@@ -102,6 +108,37 @@ class SceneManager{
     
     this.renderer.setSize(width, height);
   }
+
+  getNormalizedMouseXY(event){
+    let gutters = this.canvas.getBoundingClientRect();
+    let mouse = new THREE.Vector2();
+
+    mouse.x = ((event.clientX - gutters.left) / this.canvas.width) * 2 - 1;
+    mouse.y = - ((event.clientY - gutters.top)  / this.canvas.height) * 2 + 1;
+
+    return mouse;
+  }
+
+  onSceneClick(event){
+    let rayCaster = new THREE.Raycaster();
+    let mouse = this.getNormalizedMouseXY(event);
+    this.camera.updateMatrixWorld();
+    
+    rayCaster.setFromCamera({x: mouse.x, y: mouse.y} , this.camera);
+    
+    let intersects = rayCaster.intersectObjects(this.scene.children);
+
+    let selectedObject = intersects.map(item => {
+      if (item.object.type == 'Mesh'){
+        return item;
+      }
+    });
+
+    if (selectedObject[0]){
+      let selectedId = selectedObject[0].object.reduxID;
+      store.dispatch(selectItem(selectedId));
+    }
+  }
 }
 
-export { SceneManager } 
+export { SceneManager };

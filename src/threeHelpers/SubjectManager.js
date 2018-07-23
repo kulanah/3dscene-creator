@@ -29,6 +29,8 @@ class SubjectManager {
     let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, 4, 4, 4);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
+
+    boundingMesh.reduxID = item.id;
     
     boundingMesh.position.x = item.x;
     boundingMesh.position.y = item.y;
@@ -47,6 +49,8 @@ class SubjectManager {
     let boundingGeo = new THREE.CylinderGeometry(item.radius, item.radius, item.height, 24, 1);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
+
+    boundingMesh.reduxID = item.id;
     
     boundingMesh.position.x = item.x;
     boundingMesh.position.y = item.y;
@@ -65,6 +69,8 @@ class SubjectManager {
     let boundingGeo = new THREE.SphereGeometry(item.radius, 16, 16);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
+
+    boundingMesh.reduxID = item.id;
     
     boundingMesh.position.x = item.x;
     boundingMesh.position.y = item.y;
@@ -83,6 +89,8 @@ class SubjectManager {
     mesh.position.y = item.y;
     mesh.position.z = item.z;
 
+    mesh.reduxID = item.id;
+
     this.scene.add(mesh);
     this.meshArr.push(mesh);
   }
@@ -90,6 +98,8 @@ class SubjectManager {
   drawBox(item){
     let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
     let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    
+    mesh.reduxID = item.id;
     
     mesh.position.x = item.x;
     mesh.position.y = item.y;
@@ -103,6 +113,8 @@ class SubjectManager {
     let geo = new THREE.CylinderGeometry(item.radius, item.radius, item.height);
     let mesh = new THREE.Mesh(geo, this.shapeMaterial);
     
+    mesh.reduxID = item.id;
+
     mesh.position.x = item.x;
     mesh.position.y = item.y;
     mesh.position.z = item.z;
@@ -120,7 +132,6 @@ class SubjectManager {
         case 'sphere':
           this.drawSphere(item);
           if (item.selected === true){
-            console.log('this sphere is selected');
             this.drawSphereBounding(item);
           }
           break;
@@ -128,7 +139,6 @@ class SubjectManager {
         case 'box':
           this.drawBox(item);
           if (item.selected === true){
-            console.log('this sphere is selected');
             this.drawBoxBounding(item);
           }
           break;
