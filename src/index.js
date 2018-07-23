@@ -17,6 +17,4 @@ const router = (
   </Provider>
 );
 
-document.title = ('3D Scene Creator');
-
 ReactDOM.render(router, document.getElementById('root'));
