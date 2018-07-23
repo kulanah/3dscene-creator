@@ -23,7 +23,7 @@ class SceneManager{
     this.controls = this.buildControls(this.camera, this.canvas);
     this.sceneSubjects = this.createSceneSubjects(this.scene);
 
-
+    this.getNormalizedMouseXY = this.getNormalizedMouseXY.bind(this);
     this.selectItem = selectItem;
     this.onSceneClick = this.onSceneClick.bind(this);
     this.getScene = this.getScene.bind(this);
@@ -109,15 +109,21 @@ class SceneManager{
     this.renderer.setSize(width, height);
   }
 
+  getNormalizedMouseXY(event){
+    let gutters = this.canvas.getBoundingClientRect();
+    let mouse = new THREE.Vector2();
+
+    mouse.x = ((event.clientX - gutters.left) / this.canvas.width) * 2 - 1;
+    mouse.y = - ((event.clientY - gutters.top)  / this.canvas.height) * 2 + 1;
+
+    return mouse;
+  }
+
   onSceneClick(event){
     let rayCaster = new THREE.Raycaster();
+    let mouse = this.getNormalizedMouseXY(event);
     this.camera.updateMatrixWorld();
-
-
-    let mouse = new THREE.Vector2();
-    mouse.x = ( event.clientX / this.canvas.width) * 2 - 1;
-    mouse.y = - ( event.clientY / this.canvas.height) * 2 + 1;
-
+    
     rayCaster.setFromCamera({x: mouse.x, y: mouse.y} , this.camera);
     
     let intersects = rayCaster.intersectObjects(this.scene.children);
