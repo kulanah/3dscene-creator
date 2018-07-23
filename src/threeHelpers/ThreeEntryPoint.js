@@ -6,7 +6,8 @@ class ThreeEntryPoint{
     this.canvas = this.createCanvas(document, container);
     this.sceneManager = new SceneManager(this.canvas);
     this.subjectManager = new SubjectManager(this.sceneManager.getScene());
-
+    
+    this.canvas.onclick = this.sceneManager.onSceneClick;
     
     this.render = this.render.bind(this);
     this.resizeCanvas = this.resizeCanvas.bind(this);
