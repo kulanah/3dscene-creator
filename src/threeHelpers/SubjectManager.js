@@ -25,11 +25,6 @@ class SubjectManager {
   }
 
   drawBoxBounding(item){
-    if (this.selectedMesh){
-      this.scene.remove(this.selectedMesh);
-      this.selectedMesh = '';
-    }
-
     let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, 4, 4, 4);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
@@ -45,11 +40,6 @@ class SubjectManager {
   }
 
   drawCylinderBounding(item){
-    if (this.selectedMesh){
-      this.scene.remove(this.selectedMesh);
-      this.selectedMesh = '';
-    }
-
     let boundingGeo = new THREE.CylinderGeometry(item.radius, item.radius, item.height, 24, 1);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
@@ -65,11 +55,6 @@ class SubjectManager {
   }
 
   drawSphereBounding(item){
-    if (this.selectedMesh){
-      this.scene.remove(this.selectedMesh);
-      this.selectedMesh = '';
-    }
-
     let boundingGeo = new THREE.SphereGeometry(item.radius, 16, 16);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
