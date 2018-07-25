@@ -13,6 +13,10 @@ class SubjectManager {
     while(this.meshArr[0]){
       this.scene.remove(this.meshArr.shift());
     }
+    if (this.selectedMesh){
+      this.scene.remove(this.selectedMesh);
+      this.selectedMesh = '';
+    }
   }
 
   resetState(newState){
