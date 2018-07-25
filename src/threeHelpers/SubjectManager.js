@@ -5,7 +5,6 @@ class SubjectManager {
     this.scene = scene;
     this.meshArr = [];
     this.selectedMesh;
-    this.shapeMaterial = new THREE.MeshPhongMaterial({color: 0x003c8f});
     this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
   }
   
