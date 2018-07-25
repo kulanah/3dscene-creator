@@ -87,7 +87,8 @@ class SubjectManager {
 
   drawSphere(item){
     let geo = new THREE.SphereGeometry(item.radius, 16, 16);
-    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+    let mesh = new THREE.Mesh(geo, shapeMaterial);
     
     mesh.position.x = item.x;
     mesh.position.y = item.y;
@@ -101,7 +102,8 @@ class SubjectManager {
 
   drawBox(item){
     let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
-    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+    let mesh = new THREE.Mesh(geo, shapeMaterial);
     
     mesh.reduxID = item.id;
     
@@ -115,7 +117,8 @@ class SubjectManager {
 
   drawCylinder(item){
     let geo = new THREE.CylinderGeometry(item.radius, item.radius, item.height);
-    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+    let mesh = new THREE.Mesh(geo, shapeMaterial);
     
     mesh.reduxID = item.id;
 
