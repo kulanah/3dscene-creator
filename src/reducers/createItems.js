@@ -1,3 +1,5 @@
+const color = '#003c8f';
+
 let createItems = function(state = [], action){
   switch(action.type){
     case 'ADD_SPHERE': 
@@ -7,6 +9,7 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
+        color: color,
         selected: false,
         id: state.length,
       }];
@@ -19,6 +22,7 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
+        color: color,
         selected: false,
         id: state.length,
       }];
@@ -32,6 +36,7 @@ let createItems = function(state = [], action){
         x: action.x,
         y: action.y,
         z: action.z,
+        color: color,
         selected: false,
         id: state.length,
       }];

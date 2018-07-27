@@ -5,7 +5,6 @@ class SubjectManager {
     this.scene = scene;
     this.meshArr = [];
     this.selectedMesh;
-    this.shapeMaterial = new THREE.MeshPhongMaterial({color: 0x003c8f});
     this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
   }
   
@@ -25,11 +24,6 @@ class SubjectManager {
   }
 
   drawBoxBounding(item){
-    if (this.selectedMesh){
-      this.scene.remove(this.selectedMesh);
-      this.selectedMesh = '';
-    }
-
     let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, 4, 4, 4);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
@@ -45,11 +39,6 @@ class SubjectManager {
   }
 
   drawCylinderBounding(item){
-    if (this.selectedMesh){
-      this.scene.remove(this.selectedMesh);
-      this.selectedMesh = '';
-    }
-
     let boundingGeo = new THREE.CylinderGeometry(item.radius, item.radius, item.height, 24, 1);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
@@ -65,11 +54,6 @@ class SubjectManager {
   }
 
   drawSphereBounding(item){
-    if (this.selectedMesh){
-      this.scene.remove(this.selectedMesh);
-      this.selectedMesh = '';
-    }
-
     let boundingGeo = new THREE.SphereGeometry(item.radius, 16, 16);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
@@ -87,7 +71,8 @@ class SubjectManager {
 
   drawSphere(item){
     let geo = new THREE.SphereGeometry(item.radius, 16, 16);
-    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+    let mesh = new THREE.Mesh(geo, shapeMaterial);
     
     mesh.position.x = item.x;
     mesh.position.y = item.y;
@@ -101,7 +86,8 @@ class SubjectManager {
 
   drawBox(item){
     let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
-    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+    let mesh = new THREE.Mesh(geo, shapeMaterial);
     
     mesh.reduxID = item.id;
     
@@ -115,7 +101,8 @@ class SubjectManager {
 
   drawCylinder(item){
     let geo = new THREE.CylinderGeometry(item.radius, item.radius, item.height);
-    let mesh = new THREE.Mesh(geo, this.shapeMaterial);
+    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+    let mesh = new THREE.Mesh(geo, shapeMaterial);
     
     mesh.reduxID = item.id;
 
