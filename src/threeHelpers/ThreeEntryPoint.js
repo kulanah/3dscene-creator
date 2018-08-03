@@ -1,14 +1,10 @@
 import { SceneManager } from './SceneManager';
-import { SubjectManager } from './SubjectManager';
 
 class ThreeEntryPoint{
   constructor(container){
     this.canvas = this.createCanvas(document, container);
-    this.sceneManager = new SceneManager(this.canvas);
-    this.subjectManager = new SubjectManager(this.sceneManager.getScene(), this.sceneManager.getCamera(), container);
-    
-    this.canvas.onclick = this.sceneManager.onSceneClick;
-    
+    this.sceneManager = new SceneManager(this.canvas, container);
+
     this.render = this.render.bind(this);
     this.resizeCanvas = this.resizeCanvas.bind(this);
     this.init = this.init.bind(this);
@@ -27,7 +23,8 @@ class ThreeEntryPoint{
   
   bindEventListeners() {
     window.onresize = this.resizeCanvas;
-    this.resizeCanvas();	
+    this.resizeCanvas();
+    this.canvas.addEventListener('click', this.sceneManager.onSceneClick);
   }
   
   resizeCanvas() {        
@@ -41,7 +38,7 @@ class ThreeEntryPoint{
   }
 
   updateState(newItems){
-    this.subjectManager.resetState(newItems);
+    this.sceneManager.resetState(newItems);
   }
 
   render() {
