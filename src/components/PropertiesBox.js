@@ -40,6 +40,7 @@ class PropertiesBox extends React.Component{
       if (item.selected === true){
         return item;
       } 
+      return null;
     });
 
     return selected[0];

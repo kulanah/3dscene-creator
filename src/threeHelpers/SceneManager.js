@@ -16,7 +16,7 @@ class SceneManager{
       width: canvas.width,
       height: canvas.height
     };
-    
+
     this.scene = this.buildScene();
     this.renderer = this.buildRender(this.screenDimensions);
     this.camera = this.buildCamera(this.screenDimensions);
@@ -91,6 +91,10 @@ class SceneManager{
     return this.scene;
   }
 
+  getCamera(){
+    return this.camera;
+  }
+
   onWindowResize(){
     const { width, height } = this.canvas;
     
@@ -123,9 +127,10 @@ class SceneManager{
     let intersects = rayCaster.intersectObjects(this.scene.children);
 
     let selectedObject = intersects.map(item => {
-      if (item.object.type == 'Mesh'){
+      if (item.object.type === 'Mesh'){
         return item;
       }
+      return null;
     });
 
     if (selectedObject[0]){

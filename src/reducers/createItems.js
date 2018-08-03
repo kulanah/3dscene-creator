@@ -48,7 +48,7 @@ let createItems = function(state = [], action){
     case 'DELETE_ITEM':
       return [...state].filter(listItem => {
         return listItem.id !== action.id;
-      }).map((item, i)=>{
+      }).map((item, i) => {
         let newItem = {...item};
         newItem.id = i;
         return newItem;
@@ -56,7 +56,7 @@ let createItems = function(state = [], action){
 
     case 'SELECT_ITEM': 
       return [...state].map(item => {
-        if (item.id == action.id){
+        if (item.id === action.id){
           let newItem = {...item};
           newItem.selected = true;
           return newItem;
