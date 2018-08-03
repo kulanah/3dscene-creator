@@ -1,16 +1,19 @@
 import * as THREE from 'three';
 import GeneralLights from './GeneralLights';
 import OrbitControls from 'three-orbitcontrols';
+import DragControls from 'three-dragcontrols';
 
 import store from '../store';
 import { selectItem } from '../action/actionCreators';
+import { SubjectManager } from './SubjectManager';
 
 class SceneManager{
-  constructor(canvas){
+  constructor(canvas, container){
 
     this.clock = new THREE.Clock();
    
     this.canvas = canvas;
+    this.domElement = container;
 
     this.screenDimensions = {
       width: canvas.width,
@@ -25,8 +28,10 @@ class SceneManager{
 
     this.getNormalizedMouseXY = this.getNormalizedMouseXY.bind(this);
     this.selectItem = selectItem;
+    this.subjectManager = new SubjectManager(this.scene);
+
     this.onSceneClick = this.onSceneClick.bind(this);
-    this.getScene = this.getScene.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
     
   buildScene() {
@@ -87,12 +92,18 @@ class SceneManager{
     this.renderer.render(this.scene, this.camera);
   }
 
-  getScene(){
-    return this.scene;
-  }
+  resetState(newItems){
+    this.subjectManager.resetState(newItems);
 
-  getCamera(){
-    return this.camera;
+    this.dragControls = new DragControls(this.subjectManager.meshArr, this.camera, this.domElement);
+
+    this.dragControls.addEventListener('dragstart', function(event){
+      this.controls.enabled = false;
+    }.bind(this));
+
+    this.dragControls.addEventListener('dragend', function(event){
+      this.controls.enabled = true;
+    }.bind(this));
   }
 
   onWindowResize(){
