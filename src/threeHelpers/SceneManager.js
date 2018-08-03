@@ -4,7 +4,7 @@ import OrbitControls from 'three-orbitcontrols';
 import DragControls from 'three-dragcontrols';
 
 import store from '../store';
-import { selectItem } from '../action/actionCreators';
+import { selectItem, updateShapeProperties } from '../action/actionCreators';
 import { SubjectManager } from './SubjectManager';
 
 class SceneManager{
@@ -32,6 +32,8 @@ class SceneManager{
 
     this.onSceneClick = this.onSceneClick.bind(this);
     this.resetState = this.resetState.bind(this);
+    this.dragStart = this.dragStart.bind(this)
+    this.dragEnd = this.dragEnd.bind(this)
   }
     
   buildScene() {
@@ -96,16 +98,35 @@ class SceneManager{
     this.subjectManager.resetState(newItems);
 
     this.dragControls = new DragControls(this.subjectManager.meshArr, this.camera, this.domElement);
+    
+    this.dragControls.dragstart = function(){};
+    this.dragControls.dragend = function(){};
+    this.dragControls.addEventListener('dragstart', this.dragStart);
+    
+    this.dragControls.addEventListener('dragend',this.dragEnd);
+  };
+  
+  dragStart(event){
+    this.controls.enabled = false;
+  };
+  
+  dragEnd(event){
+    this.controls.enabled = true;
+    console.log(event);
+    let targetId = event.object.reduxID;
+    let x = event.object.position.x;
+    let y = event.object.position.y;
+    let z = event.object.position.z;
 
-    this.dragControls.addEventListener('dragstart', function(event){
-      this.controls.enabled = false;
-    }.bind(this));
+    let updateX = {id: targetId, newVal: x, property: 'x'};
+    let updateY = {id: targetId, newVal: y, property: 'y'};
+    let updateZ = {id: targetId, newVal: z, property: 'z'};
 
-    this.dragControls.addEventListener('dragend', function(event){
-      this.controls.enabled = true;
-    }.bind(this));
-  }
-
+    store.dispatch(updateShapeProperties(updateX));
+    store.dispatch(updateShapeProperties(updateY));
+    store.dispatch(updateShapeProperties(updateZ));
+  };
+  
   onWindowResize(){
     const { width, height } = this.canvas;
     
