@@ -1,12 +1,8 @@
 import * as THREE from 'three';
 
-import DragControls from 'three-dragcontrols';
-
 class SubjectManager {
-  constructor(scene, camera, domElement) {
+  constructor(scene) {
     this.scene = scene;
-    this.camera = camera;
-    this.domElement = domElement;
 
     this.meshArr = [];
     this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
@@ -149,8 +145,6 @@ class SubjectManager {
           break;
       }
     }
-    this.drag = new DragControls(this.meshArr, this.camera, this.domElement);
-    
   }
 }
 
