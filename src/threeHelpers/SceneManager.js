@@ -1,16 +1,19 @@
 import * as THREE from 'three';
 import GeneralLights from './GeneralLights';
 import OrbitControls from 'three-orbitcontrols';
+import DragControls from 'three-dragcontrols';
 
 import store from '../store';
-import { selectItem } from '../action/actionCreators';
+import { selectItem, updateShapePosition } from '../action/actionCreators';
+import { SubjectManager } from './SubjectManager';
 
 class SceneManager{
-  constructor(canvas){
+  constructor(canvas, container){
 
     this.clock = new THREE.Clock();
    
     this.canvas = canvas;
+    this.domElement = container;
 
     this.screenDimensions = {
       width: canvas.width,
@@ -25,8 +28,12 @@ class SceneManager{
 
     this.getNormalizedMouseXY = this.getNormalizedMouseXY.bind(this);
     this.selectItem = selectItem;
+    this.subjectManager = new SubjectManager(this.scene);
+
     this.onSceneClick = this.onSceneClick.bind(this);
-    this.getScene = this.getScene.bind(this);
+    this.resetState = this.resetState.bind(this);
+    this.dragStart = this.dragStart.bind(this);
+    this.dragEnd = this.dragEnd.bind(this);
   }
     
   buildScene() {
@@ -87,12 +94,34 @@ class SceneManager{
     this.renderer.render(this.scene, this.camera);
   }
 
-  getScene(){
-    return this.scene;
-  }
+  resetState(newItems){
+    this.subjectManager.resetState(newItems);
+    if (this.dragControls){
+      this.dragControls.deactivate();
+    }
 
-  getCamera(){
-    return this.camera;
+    this.dragControls = new DragControls(this.subjectManager.meshArr, this.camera, this.domElement);
+
+    this.dragControls.addEventListener('dragstart', this.dragStart);
+    this.dragControls.addEventListener('dragend', this.dragEnd);
+  };
+  
+  dragStart(event){
+    this.controls.enabled = false;
+  }
+  
+  dragEnd(event){
+    this.controls.enabled = true;
+    let targetId = event.object.reduxID;
+    let x = event.object.position.x;
+    let y = event.object.position.y;
+    let z = event.object.position.z;
+
+    let updatePosition = {id: targetId, newX: x, newY: y, newZ: z};
+    this.selectedId  = targetId;
+
+    store.dispatch(updateShapePosition(updatePosition));
+    store.dispatch(selectItem(targetId));
   }
 
   onWindowResize(){
@@ -118,25 +147,8 @@ class SceneManager{
   }
 
   onSceneClick(event){
-    let rayCaster = new THREE.Raycaster();
-    let mouse = this.getNormalizedMouseXY(event);
-    this.camera.updateMatrixWorld();
-    
-    rayCaster.setFromCamera({x: mouse.x, y: mouse.y} , this.camera);
-    
-    let intersects = rayCaster.intersectObjects(this.scene.children);
-
-    let selectedObject = intersects.map(item => {
-      if (item.object.type === 'Mesh'){
-        return item;
-      }
-      return null;
-    });
-
-    if (selectedObject[0]){
-      let selectedId = selectedObject[0].object.reduxID;
-      store.dispatch(selectItem(selectedId));
-    }
+    store.dispatch(selectItem(this.selectedId));
+    this.selectedId = null;
   }
 }
 
