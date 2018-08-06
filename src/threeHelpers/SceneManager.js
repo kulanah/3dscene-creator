@@ -4,7 +4,7 @@ import OrbitControls from 'three-orbitcontrols';
 import DragControls from 'three-dragcontrols';
 
 import store from '../store';
-import { selectItem, updateShapeProperties } from '../action/actionCreators';
+import { selectItem, updateShapePosition } from '../action/actionCreators';
 import { SubjectManager } from './SubjectManager';
 
 class SceneManager{
@@ -95,14 +95,16 @@ class SceneManager{
   }
 
   resetState(newItems){
+    // console.trace();
     this.subjectManager.resetState(newItems);
 
     this.dragControls = new DragControls(this.subjectManager.meshArr, this.camera, this.domElement);
+
+    // this.dragControls.activate();
+    this.dragControls.removeEventListener();
+    // this.dragControls.removeEventListener('dragend',this.dragEnd);
     
-    this.dragControls.dragstart = function(){};
-    this.dragControls.dragend = function(){};
     this.dragControls.addEventListener('dragstart', this.dragStart);
-    
     this.dragControls.addEventListener('dragend',this.dragEnd);
   };
   
@@ -112,19 +114,17 @@ class SceneManager{
   
   dragEnd(event){
     this.controls.enabled = true;
-    console.log(event);
     let targetId = event.object.reduxID;
     let x = event.object.position.x;
     let y = event.object.position.y;
     let z = event.object.position.z;
 
-    let updateX = {id: targetId, newVal: x, property: 'x'};
-    let updateY = {id: targetId, newVal: y, property: 'y'};
-    let updateZ = {id: targetId, newVal: z, property: 'z'};
+    let updatePosition = {id: targetId, newX: x, newY: y, newZ: z};
 
-    store.dispatch(updateShapeProperties(updateX));
-    store.dispatch(updateShapeProperties(updateY));
-    store.dispatch(updateShapeProperties(updateZ));
+    store.dispatch(updateShapePosition(updatePosition));
+
+    console.log(this.domElement);
+    this.dragControls.deactivate();
   };
   
   onWindowResize(){
