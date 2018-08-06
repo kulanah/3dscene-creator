@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import jsonObj from '../package.json';
 
 //react components
 import VisibleThreeDScene from './components/VisibleThreeDScene';
@@ -13,6 +14,7 @@ const router = (
   <Provider store={store}>
     <div id='sceneDiv'>
       <VisibleThreeDScene/>
+      <p>Version: {jsonObj.version}</p>
     </div>
   </Provider>
 );
