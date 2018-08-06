@@ -18,7 +18,7 @@ class ItemList extends React.Component{
       return (
         <ul>
           {this.props.items.map(item =>
-            <Item selectItem={this.props.selectItem} deleteItem={this.props.deleteItem} data={item} />
+            <Item key={item.id} selectItem={this.props.selectItem} deleteItem={this.props.deleteItem} data={item} />
           )}
         </ul>
       );

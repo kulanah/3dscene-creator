@@ -1,4 +1,4 @@
-import { createStore, compose} from 'redux';
+import { createStore/*, compose */} from 'redux';
 
 import rootReducer from './reducers/index';
 
@@ -6,9 +6,9 @@ const defaultState = {
   items: [],
 };
 
-const enhancers = compose(
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-);
+// const enhancers = compose(
+//   window.devToolsExtension ? window.devToolsExtension() : f => f
+// );
 
 const store = createStore(
   rootReducer, 
