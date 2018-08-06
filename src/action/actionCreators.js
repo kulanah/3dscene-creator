@@ -72,6 +72,16 @@ export function deleteItem(id){
   };
 }
 
+export function updateShapePosition(newVal){
+  return {
+    type: 'UPDATE_SHAPE_POSITION',
+    id: newVal.id,
+    newX: newVal.newX,
+    newY: newVal.newY,
+    newZ: newVal.newZ,
+  }
+}
+
 export function selectItem(id){
   return {
     type: 'SELECT_ITEM',
