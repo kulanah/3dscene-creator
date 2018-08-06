@@ -32,8 +32,8 @@ class SceneManager{
 
     this.onSceneClick = this.onSceneClick.bind(this);
     this.resetState = this.resetState.bind(this);
-    this.dragStart = this.dragStart.bind(this)
-    this.dragEnd = this.dragEnd.bind(this)
+    this.dragStart = this.dragStart.bind(this);
+    this.dragEnd = this.dragEnd.bind(this);
   }
     
   buildScene() {
@@ -95,22 +95,20 @@ class SceneManager{
   }
 
   resetState(newItems){
-    // console.trace();
     this.subjectManager.resetState(newItems);
+    if (this.dragControls){
+      this.dragControls.deactivate();
+    }
 
     this.dragControls = new DragControls(this.subjectManager.meshArr, this.camera, this.domElement);
 
-    // this.dragControls.activate();
-    this.dragControls.removeEventListener();
-    // this.dragControls.removeEventListener('dragend',this.dragEnd);
-    
     this.dragControls.addEventListener('dragstart', this.dragStart);
-    this.dragControls.addEventListener('dragend',this.dragEnd);
+    this.dragControls.addEventListener('dragend', this.dragEnd);
   };
   
   dragStart(event){
     this.controls.enabled = false;
-  };
+  }
   
   dragEnd(event){
     this.controls.enabled = true;
@@ -120,13 +118,12 @@ class SceneManager{
     let z = event.object.position.z;
 
     let updatePosition = {id: targetId, newX: x, newY: y, newZ: z};
+    this.selectedId  = targetId;
 
     store.dispatch(updateShapePosition(updatePosition));
+    store.dispatch(selectItem(targetId));
+  }
 
-    console.log(this.domElement);
-    this.dragControls.deactivate();
-  };
-  
   onWindowResize(){
     const { width, height } = this.canvas;
     
@@ -150,25 +147,8 @@ class SceneManager{
   }
 
   onSceneClick(event){
-    let rayCaster = new THREE.Raycaster();
-    let mouse = this.getNormalizedMouseXY(event);
-    this.camera.updateMatrixWorld();
-    
-    rayCaster.setFromCamera({x: mouse.x, y: mouse.y} , this.camera);
-    
-    let intersects = rayCaster.intersectObjects(this.scene.children);
-
-    let selectedObject = intersects.map(item => {
-      if (item.object.type === 'Mesh'){
-        return item;
-      }
-      return null;
-    });
-
-    if (selectedObject[0]){
-      let selectedId = selectedObject[0].object.reduxID;
-      store.dispatch(selectItem(selectedId));
-    }
+    store.dispatch(selectItem(this.selectedId));
+    this.selectedId = null;
   }
 }
 
