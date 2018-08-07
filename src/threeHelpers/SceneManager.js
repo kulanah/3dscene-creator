@@ -122,6 +122,7 @@ class SceneManager{
 
     store.dispatch(updateShapePosition(updatePosition));
     store.dispatch(selectItem(targetId));
+
   }
 
   onWindowResize(){
@@ -147,8 +148,6 @@ class SceneManager{
   }
 
   onSceneClick(event){
-    store.dispatch(selectItem(this.selectedId));
-    this.selectedId = null;
   }
 }
 
