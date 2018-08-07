@@ -1,6 +1,6 @@
 const color = '#003c8f';
 
-let createItems = function(state = [], action){
+let itemList = function(state = [], action){
   switch(action.type){
     case 'ADD_SPHERE': 
       return [...state, {
@@ -54,26 +54,13 @@ let createItems = function(state = [], action){
         return newItem;
       });
 
-    case 'SELECT_ITEM': 
-      return [...state].map(item => {
-        if (item.id === action.id){
-          let newItem = {...item};
-          newItem.selected = true;
-          return newItem;
-        } else {
-          let newItem = {...item};
-          newItem.selected = false;
-          return newItem;
-        }
-      });
-
     case 'UPDATE_SHAPE_POSITION':
       return[...state].map(item =>
         item.id === action.id ? {...item, x: action.newX, y: action.newY, z: action.newZ} : item);
-    
+   
     default: 
       return state;
   }
 };
 
-export { createItems };
+export { itemList };

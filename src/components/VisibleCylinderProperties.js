@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = function(items, id){
   return {
-    item: items.createItems[id.id],
+    item: items.itemList[id.id],
   };
 };
 

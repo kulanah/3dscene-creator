@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { createItems } from './createItems';
+import { itemList } from './itemList';
+import { applicationState } from './applicationState';
 
 const rootReducer = combineReducers({
-  createItems, 
+  itemList, 
+  applicationState,
 });
 
 export default rootReducer;
