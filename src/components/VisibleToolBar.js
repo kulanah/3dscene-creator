@@ -11,9 +11,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createSphere: id => dispatch(createSphere(id)),
-  createBox: id => dispatch(createBox(id)),
-  createCylinder: id => dispatch(createCylinder(id)),
+  createSphere: () => dispatch(createSphere()),
+  createBox: () => dispatch(createBox()),
+  createCylinder: () => dispatch(createCylinder()),
 });
 
 export default connect(
