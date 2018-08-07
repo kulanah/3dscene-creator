@@ -79,7 +79,7 @@ export function updateShapePosition(newVal){
     newX: newVal.newX,
     newY: newVal.newY,
     newZ: newVal.newZ,
-  }
+  };
 }
 
 export function selectItem(id){
