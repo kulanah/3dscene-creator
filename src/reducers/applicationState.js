@@ -1,7 +1,7 @@
 let applicationState = function(state = {}, action){
   switch(action.type){
     case 'SELECT_ITEM': 
-      return {selectedItem: action.id};
+      return {...state, selectedItem: action.id};
 
     case 'SELECT_TOOL': 
       return {...state, selectedTool: action.id};
