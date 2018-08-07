@@ -3,7 +3,8 @@ import { createStore/*, compose */} from 'redux';
 import rootReducer from './reducers/index';
 
 const defaultState = {
-  items: [],
+  itemList: [],
+  applicationState: {selectedItem: -1},
 };
 
 // const enhancers = compose(
