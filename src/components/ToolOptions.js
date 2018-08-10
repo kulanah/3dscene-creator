@@ -1,12 +1,13 @@
 import React from 'react';
 
 import './css/ToolOptions.css';
+import { CreateShape } from './CreateShape';
 
 class ToolOptions extends React.Component{
   constructor(){
     super();
 
-    this.toolArray = ['No tool currently selected'];
+    this.toolArray = ['No tool currently selected', <CreateShape/>];
   }
 
   render(){
