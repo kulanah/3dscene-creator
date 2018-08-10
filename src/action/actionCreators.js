@@ -15,23 +15,15 @@ export function createSphere(){
 }
 
 
-export function createBox(){
-  let height = 10;
-  let width = 10;
-  let depth = 10;
-
-  let x = 0;
-  let y = height / 2;
-  let z = 0;
-
+export function createBox(obj){
   return{
     type: 'ADD_BOX',
-    height: height,
-    width: width,
-    depth: depth,
-    x: x, 
-    y: y,
-    z: z,
+    height: obj.height,
+    width: obj.width,
+    depth: obj.depth,
+    x: obj.x, 
+    y: obj.y,
+    z: obj.z,
   };
 }
 
