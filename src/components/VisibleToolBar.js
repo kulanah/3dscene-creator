@@ -1,6 +1,4 @@
-import { createSphere } from '../action/actionCreators';
-import { createCylinder } from '../action/actionCreators';
-import { createBox } from '../action/actionCreators';
+import { selectTool } from 'action/actionCreators';
 
 import { ToolBar } from './ToolBar';
 
@@ -11,9 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createSphere: () => dispatch(createSphere()),
-  createBox: () => dispatch(createBox()),
-  createCylinder: () => dispatch(createCylinder()),
+  selectTool: (toolId) => dispatch(selectTool(toolId)),
 });
 
 export default connect(

@@ -3,11 +3,34 @@
   left: 0;
   top: 0;
   width: 20%;
+
 }
 
-.shapeDiv{
-  border: 1px solid black;
+#toolsDiv{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 5px;
+  margin-top: -5px;
+}
+
+.toolDiv{
+  display: flex;
+  flex-direction: column;
   margin: 2px;
+  margin-left: 8px;
+  max-width: 40px;
+  margin-top: 8px;
+  font-size: 10px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.toolIcon{
+  border: 1px solid black;
+  width: 40px;
+  height: 40px;
 }
 
 .shapeDiv:hover{
