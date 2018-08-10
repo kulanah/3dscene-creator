@@ -1,11 +1,14 @@
-import { SphereProperties } from './SphereProperties';
+import { ToolOptions } from './ToolOptions';
+
+// this is an exmaple of the action function needed 
 import { updateShapeProperties } from '../action/actionCreators';
 
 import { connect } from 'react-redux';
 
-const mapStateToProps = function(items, id){
+const mapStateToProps = function(items){
+  console.log(items.applicationState);
   return {
-    item: items.itemList[id.id],
+    selectedTool: items.applicationState.selectedTool,
   };
 };
 
@@ -16,4 +19,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps, 
   mapDispatchToProps
-)(SphereProperties);
+)(ToolOptions);

@@ -118,10 +118,10 @@ class SceneManager{
     let z = event.object.position.z;
 
     let updatePosition = {id: targetId, newX: x, newY: y, newZ: z};
-    this.selectedId  = targetId;
+    this.selectedId = targetId;
 
+    store.dispatch(selectItem(this.selectedId));
     store.dispatch(updateShapePosition(updatePosition));
-    store.dispatch(selectItem(targetId));
   }
 
   onWindowResize(){
@@ -148,6 +148,7 @@ class SceneManager{
 
   onSceneClick(event){
     store.dispatch(selectItem(this.selectedId));
+    this.subjectManager.resetState(store.getState().itemList);
     this.selectedId = null;
   }
 }

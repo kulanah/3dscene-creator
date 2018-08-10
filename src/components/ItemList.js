@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/ItemList.css';
+import './3DSceneCreator.css';
 import { Item } from './Item';
 
 class ItemList extends React.Component{
@@ -27,8 +28,8 @@ class ItemList extends React.Component{
 
   render(){
     return (
-      <div id='itemListDiv'>
-        <div className='itemListHeader'>Item List</div>
+      <div className='window' id='itemListDiv'>
+        <div className='windowHeader'>Item List</div>
         <div id='itemListContent'>
           {this.displayItems()}
 

@@ -1,0 +1,18 @@
+.window{
+  padding-bottom: 1em;
+
+  display: flex;
+  flex-direction: column;
+  background: #eee;
+  box-shadow: 3px 2px 10px #222;
+}
+
+.windowHeader{
+  border-top: 0.75em solid #003c8f;
+  padding-left: 0.5em;
+  padding-bottom: 0.1em;
+  padding-top: 0.1em;
+  background: #1565c0;
+  color: white;
+  margin-bottom: 0.5em;
+}

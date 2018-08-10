@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/PropertiesBox.css';
+import './3DSceneCreator.css';
 
 import store from '../store';
 import VisibleBoxProperties from './VisibleBoxProperties';
@@ -36,14 +37,16 @@ class PropertiesBox extends React.Component{
 
   checkIfAnySelected(){
     let state = store.getState();
-    let selected = state.createItems.filter(item => {
-      if (item.selected === true){
-        return item;
-      } 
-      return null;
-    });
+    let selectedNum = state.applicationState.selectedItem;
+    let selected;
 
-    return selected[0];
+    if (selectedNum > -1){
+      selected = state.itemList[selectedNum];
+    } else {
+      selected = null;
+    }
+
+    return selected;
   }
 
 
@@ -59,10 +62,9 @@ class PropertiesBox extends React.Component{
 
 
   render(){
-    this.checkIfAnySelected();
     return (
-      <div id='propertiesBoxDiv'>
-        <div className='propertiesBoxHeader'>
+      <div className='window' id='propertiesBoxDiv'>
+        <div className='windowHeader'>
           Properties
         </div>
         {this.selectItem()}

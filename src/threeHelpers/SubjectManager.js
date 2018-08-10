@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+import store from '../store';
+
 class SubjectManager {
   constructor(scene) {
     this.scene = scene;
@@ -114,29 +116,31 @@ class SubjectManager {
     this.meshArr.push(mesh);
   }
 
-
   addStateToScene(newState){
+    let state = store.getState(); 
+    let selectedNum = state.applicationState.selectedItem;
+
     for (let i = 0; i < newState.length; ++i){
       let item = newState[i];
 
       switch(item.type){
         case 'sphere':
           this.drawSphere(item);
-          if (item.selected === true){
+          if (i === selectedNum){
             this.drawSphereBounding(item);
           }
           break;
 
         case 'box':
           this.drawBox(item);
-          if (item.selected === true){
+          if (i === selectedNum){
             this.drawBoxBounding(item);
           }
           break;
 
         case 'cylinder':
           this.drawCylinder(item);
-          if (item.selected === true){
+          if (i === selectedNum){
             this.drawCylinderBounding(item);
           }
           break;

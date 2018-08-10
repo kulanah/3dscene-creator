@@ -3,6 +3,7 @@ import React from 'react';
 import { Canvas } from './Canvas';
 import VisibleToolBar from './VisibleToolBar';
 import VisibleItemList from './VisibleItemList';
+import VisibleToolOptions from './VisibleToolOptions';
 import { PropertiesBox } from './PropertiesBox';
 
 import './css/ThreeDScene.css';
@@ -23,6 +24,7 @@ class ThreeDScene extends React.Component{
         <VisibleToolBar />
         <VisibleItemList />
         <PropertiesBox selectedItem={this.state.selectedItem} />
+        <VisibleToolOptions />
       </div>
     );
   }

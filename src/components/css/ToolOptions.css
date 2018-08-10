@@ -1,0 +1,9 @@
+#toolOptionsDiv{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#toolOptionsContent{
+  padding: 1em;
+}
