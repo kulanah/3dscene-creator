@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/PropertiesBox.css';
+import './3DSceneCreator.css';
 
 import store from '../store';
 import VisibleBoxProperties from './VisibleBoxProperties';
@@ -62,8 +63,8 @@ class PropertiesBox extends React.Component{
 
   render(){
     return (
-      <div id='propertiesBoxDiv'>
-        <div className='propertiesBoxHeader'>
+      <div className='window' id='propertiesBoxDiv'>
+        <div className='windowHeader'>
           Properties
         </div>
         {this.selectItem()}
