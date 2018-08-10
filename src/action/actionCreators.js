@@ -88,3 +88,10 @@ export function selectItem(id){
     id: id,
   };
 }
+
+export function selectTool(id){
+  return {
+    type: 'SELECT_TOOL',
+    id: id,
+  };
+}
