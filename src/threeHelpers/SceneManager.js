@@ -149,7 +149,7 @@ class SceneManager{
   onSceneClick(event){
     store.dispatch(selectItem(this.selectedId));
     this.subjectManager.resetState(store.getState().itemList);
-    this.selectedId = null;
+    this.selectedId = -1;
   }
 }
 
