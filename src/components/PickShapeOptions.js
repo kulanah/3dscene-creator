@@ -1,19 +1,20 @@
 import React from 'react';
 import { CreateBoxOptions } from './CreateBoxOptions';
+import { CreateSphereOptions } from './CreateSphereOptions';
+import { CreateCylinderOptions } from './CreateCylinderOptions';
 
 class PickShapeOptions extends React.Component{
 
   render(){
     switch (this.props.shape){
       case 'box':
-        return <CreateBoxOptions/>
+        return <CreateBoxOptions/>;
 
       case 'sphere':
-        return <p>ISSA SPHERE</p>;
+        return <CreateSphereOptions />;
 
       case 'cylinder':
-        return <p>ISSA cylinder</p>;
-
+        return <CreateCylinderOptions />;
       default: 
         return  '';
     }
