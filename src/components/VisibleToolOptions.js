@@ -6,7 +6,6 @@ import { updateShapeProperties } from '../action/actionCreators';
 import { connect } from 'react-redux';
 
 const mapStateToProps = function(items){
-  console.log(items.applicationState);
   return {
     selectedTool: items.applicationState.selectedTool,
   };
