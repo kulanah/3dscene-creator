@@ -1,0 +1,10 @@
+.shapeOptionInput{
+  max-width: 4em;
+}
+
+.shapeOptionRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+  width: 100%;
+}
