@@ -1,16 +1,10 @@
-export function createSphere(){
-  let radius = 5;
-
-  let x = 0;
-  let y = radius;
-  let z = 0;
-
+export function createSphere(obj){
   return{
     type: 'ADD_SPHERE',
-    radius: radius,
-    x: x,
-    y: y,
-    z: z,
+    radius: obj.radius,
+    x: obj.x,
+    y: obj.y,
+    z: obj.z,
   };
 }
 
@@ -28,21 +22,14 @@ export function createBox(obj){
 }
 
 
-export function createCylinder(){
-  let height = 10;
-  let radius = 5;
-
-  let x = 0;
-  let y = height / 2;
-  let z = 0;
-
+export function createCylinder(obj){
   return{
     type: 'ADD_CYLINDER',
-    height: height,
-    radius: radius,
-    x: x,
-    y: y,
-    z: z,
+    height: obj.height,
+    radius: obj.radius,
+    x: obj.x,
+    y: obj.y,
+    z: obj.z,
   };
 }
 
