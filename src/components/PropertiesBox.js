@@ -9,10 +9,8 @@ import VisibleSphereProperties from './VisibleSphereProperties';
 
 
 class PropertiesBox extends React.Component{
-  constructor(){
-    super();
-    this.state = ({
-    });
+  constructor(props){
+    super(props);
 
     this.selectItem = this.selectItem.bind(this);
     this.displayItem = this.displayItem.bind(this);
@@ -37,7 +35,7 @@ class PropertiesBox extends React.Component{
 
   checkIfAnySelected(){
     let state = store.getState();
-    let selectedNum = state.applicationState.selectedItem;
+    let selectedNum = this.props.selectedItem;
     let selected;
 
     if (selectedNum > -1){
