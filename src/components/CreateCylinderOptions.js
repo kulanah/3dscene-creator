@@ -1,26 +1,24 @@
 import React from 'react';
 
 import store from 'store';
-import { createBox } from '../action/actionCreators';
+import { createCylinder } from '../action/actionCreators';
 
 import 'components/css/ShapeOptions.css';
 
-class CreateBoxOptions extends React.Component{
+class CreateCylinderOptions extends React.Component{
   constructor(){
     super();
 
     this.state = {
       height: 10,
-      width: 10,
-      depth: 10, 
+      radius: 10,
       x: 5,
       y: 5,
       z: 5,
     };
 
     this.updateHeight = this.updateHeight.bind(this);
-    this.updateWidth = this.updateWidth.bind(this);
-    this.updateDepth = this.updateDepth.bind(this);
+    this.updateRadius = this.updateRadius.bind(this);
     this.updateX = this.updateX.bind(this);
     this.updateY = this.updateY.bind(this);
     this.updateZ = this.updateZ.bind(this);
@@ -32,21 +30,19 @@ class CreateBoxOptions extends React.Component{
     event.preventDefault();
     let item = {
       height: this.state.height,
-      width: this.state.width,
-      depth: this.state.depth,
+      radius: this.state.radius,
       x: this.state.x,
       y: this.state.y,
       z: this.state.z,
     };
-    store.dispatch(createBox(item));
+    store.dispatch(createCylinder(item));
     this.resetValues();
   }
 
   resetValues(){
     this.setState({
       height: 10,
-      width: 10,
-      depth: 10, 
+      radius: 10,
       x: 5,
       y: 5,
       z: 5,
@@ -57,12 +53,8 @@ class CreateBoxOptions extends React.Component{
     this.setState({height: Number(event.target.value)});
   }
 
-  updateDepth(event){
-    this.setState({depth: Number(event.target.value)});
-  }
-
-  updateWidth(event){
-    this.setState({width: Number(event.target.value)});
+  updateRadius(event){
+    this.setState({radius: Number(event.target.value)});
   }
 
   updateX(event){
@@ -87,13 +79,8 @@ class CreateBoxOptions extends React.Component{
           </span>
 
           <span className='shapeOptionRow'>          
-            <label htmlFor='depth'>Depth: </label>
-            <input className='shapeOptionInput' onChange={this.updateDepth} value={this.state.depth} name='depth' type='number'/>
-          </span>
-
-          <span className='shapeOptionRow'>          
-            <label htmlFor='width'>Width: </label>
-            <input className='shapeOptionInput' onChange={this.updateWidth} value={this.state.width} name='width' type='number'/>
+            <label htmlFor='radius'>Radius: </label>
+            <input className='shapeOptionInput' onChange={this.updateRadius} value={this.state.radius} name='radius' type='number'/>
           </span>
 
           <span className='shapeOptionRow'>          
@@ -118,4 +105,4 @@ class CreateBoxOptions extends React.Component{
   }
 }
 
-export { CreateBoxOptions };
+export { CreateCylinderOptions };
