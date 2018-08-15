@@ -4,6 +4,7 @@
   right: 0;
   width: 30%;
   min-height: 20%;
+  max-width: 15em;
 }
 
 .propertiesTitle{

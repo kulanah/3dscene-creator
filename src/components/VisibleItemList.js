@@ -8,6 +8,7 @@ import { selectItem } from '../action/actionCreators';
 const mapStateToProps = function(state){
   return {
     items: state.itemList,
+    selectedItem: state.applicationState.selectedItem,
   };
 };
 

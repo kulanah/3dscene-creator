@@ -8,6 +8,14 @@ class ItemList extends React.Component{
     super();
 
     this.displayItems = this.displayItems.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+  }
+
+  deleteItem(id){
+    this.props.deleteItem(id);
+    if (id === this.props.selectedItem){
+      this.props.selectItem(-1);
+    }
   }
 
   displayItems(){
@@ -19,7 +27,7 @@ class ItemList extends React.Component{
       return (
         <ul>
           {this.props.items.map(item =>
-            <Item key={item.id} selectItem={this.props.selectItem} deleteItem={this.props.deleteItem} data={item} />
+            <Item key={item.id} selectItem={this.props.selectItem} deleteItem={this.deleteItem} data={item} />
           )}
         </ul>
       );
