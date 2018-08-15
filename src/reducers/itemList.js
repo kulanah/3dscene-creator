@@ -38,6 +38,9 @@ let itemList = function(state = [], action){
         z: action.z,
         color: color,
         selected: false,
+        segmentX: action.segmentX,
+        segmentY: action.segmentY,
+        segmentZ: action.segmentZ,
         id: state.length,
       }];
     
@@ -57,6 +60,18 @@ let itemList = function(state = [], action){
     case 'UPDATE_SHAPE_POSITION':
       return[...state].map(item =>
         item.id === action.id ? {...item, x: action.newX, y: action.newY, z: action.newZ} : item);
+
+    case 'UPDATE_SEGMENT_X':
+      return [...state].map(item => 
+        item.id === action.id ? {...item, segmentX: action.newVal} : item);
+   
+    case 'UPDATE_SEGMENT_Y':
+      return [...state].map(item => 
+        item.id === action.id ? {...item, segmentY: action.newVal} : item);
+   
+    case 'UPDATE_SEGMENT_Z':
+      return [...state].map(item => 
+        item.id === action.id ? {...item, segmentZ: action.newVal} : item);
    
     default: 
       return state;

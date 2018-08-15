@@ -2,13 +2,13 @@ import React from 'react';
 
 import './css/ToolOptions.css';
 import { CreateShape } from './CreateShape';
-import { SegmentShape } from './SegmentShapeOptions';
+import VisibleSegmentShape from './VisibleSegmentShape';
 
 class ToolOptions extends React.Component{
   constructor(){
     super();
 
-    this.toolArray = ['No tool currently selected', <CreateShape/>, <SegmentShape/>];
+    this.toolArray = ['No tool currently selected', <CreateShape/>, <VisibleSegmentShape/>];
   }
 
   render(){

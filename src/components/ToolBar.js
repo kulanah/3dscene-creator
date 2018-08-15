@@ -5,10 +5,6 @@ import shapes from 'img/shapes.png';
 import segments from 'img/segments.png';
 
 class ToolBar extends React.Component{
-  constructor(){
-    super();
-  }
-
   render(){
     return (
       <div className='window' id='toolBarDiv'>

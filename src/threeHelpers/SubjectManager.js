@@ -26,7 +26,7 @@ class SubjectManager {
   }
 
   drawBoxBounding(item){
-    let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, 4, 4, 4);
+    let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, item.segmentX, item.segmentY, item.segmentZ);
 
     let boundingMesh = new THREE.Mesh(boundingGeo, this.boundingMaterial);
 

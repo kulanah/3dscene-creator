@@ -18,6 +18,9 @@ export function createBox(obj){
     x: obj.x, 
     y: obj.y,
     z: obj.z,
+    segmentX: 5,
+    segmentY: 5,
+    segmentZ: 5,
   };
 }
 
@@ -72,5 +75,29 @@ export function selectTool(id){
   return {
     type: 'SELECT_TOOL',
     id: id,
+  };
+}
+
+export function updateSegmentX(id, newVal){
+  return {
+    type: 'UPDATE_SEGMENT_X',
+    id: id,
+    newVal: newVal,
+  };
+}
+
+export function updateSegmentY(id, newVal){
+  return {
+    type: 'UPDATE_SEGMENT_Y',
+    id: id,
+    newVal: newVal,
+  };
+}
+
+export function updateSegmentZ(id, newVal){
+  return {
+    type: 'UPDATE_SEGMENT_Z',
+    id: id,
+    newVal: newVal,
   };
 }
