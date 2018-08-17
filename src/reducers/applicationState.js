@@ -6,6 +6,28 @@ let applicationState = function(state = {}, action){
     case 'SELECT_TOOL': 
       return {...state, selectedTool: action.id};
 
+    case 'UPDATE_SELECTED_SEGMENT_X':
+      if (action.newVal >  0){
+        return {...state, selectedX: action.newVal};
+      } else {
+        return state;
+      }
+
+    case 'UPDATE_SELECTED_SEGMENT_Y':
+      if (action.newVal > 0){
+        return {...state, selectedY: action.newVal};
+      } else { 
+        return state;
+      }
+
+    case 'UPDATE_SELECTED_SEGMENT_Z':
+      if (action.newVal > 0){
+        return {...state, selectedZ: action.newVal};
+      } else { 
+        return state;
+      }
+
+
     default: 
       return state;
   }

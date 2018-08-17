@@ -101,3 +101,28 @@ export function updateSegmentZ(id, newVal){
     newVal: newVal,
   };
 }
+
+export function updateSelectedSegmentX(id, newVal){
+  return {
+    type: 'UPDATE_SELECTED_SEGMENT_X',
+    id: id,
+    newVal: newVal,
+  };
+}
+
+export function updateSelectedSegmentY(id, newVal){
+  return {
+    type: 'UPDATE_SELECTED_SEGMENT_Y',
+    id: id,
+    newVal: newVal,
+  };
+}
+
+export function updateSelectedSegmentZ(id, newVal){
+  return {
+    type: 'UPDATE_SELECTED_SEGMENT_Z',
+    id: id,
+    newVal: newVal,
+  };
+}
+
