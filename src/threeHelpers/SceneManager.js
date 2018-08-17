@@ -76,7 +76,7 @@ class SceneManager{
     const farPlane = 500; 
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-    camera.position.set(40,40,40);
+    camera.position.set(-40,40,-40);
     return camera;
   }
 

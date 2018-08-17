@@ -25,6 +25,33 @@ class SubjectManager {
     this.addStateToScene(newState);
   }
 
+  drawBoxSegment(item){
+
+    let state = store.getState().applicationState;
+    let x = state.selectedX - 1;
+    let y = state.selectedY - 1; 
+    let z = state.selectedZ - 1;
+
+    if (this.segment){
+      this.scene.remove(this.segment);
+    }
+
+    let segmentWidth = item.width / item.segmentX;
+    let segmentHeight = item.height / item.segmentY;
+    let segmentDepth = item.depth / item.segmentZ;
+
+    let segmentGeo = new THREE.BoxGeometry(segmentWidth, segmentHeight, segmentDepth);
+    let segmentMesh = new THREE.MeshBasicMaterial({color: 0x00ff04});
+
+    let segment = new THREE.Mesh(segmentGeo, segmentMesh);
+    segment.position.x = (item.x - item.width / 2) + segmentWidth / 2 + segmentWidth * x;
+    segment.position.y = (item.y - item.height/ 2) + segmentHeight / 2 + segmentHeight * y;
+    segment.position.z = (item.z - item.depth/ 2) + segmentDepth / 2 + segmentDepth * z;
+
+    this.scene.add(segment);
+    this.segment = segment;
+  }
+
   drawBoxBounding(item){
     let boundingGeo = new THREE.BoxGeometry(item.width, item.height, item.depth, item.segmentX, item.segmentY, item.segmentZ);
 
@@ -119,6 +146,13 @@ class SubjectManager {
   addStateToScene(newState){
     let state = store.getState(); 
     let selectedNum = state.applicationState.selectedItem;
+    let segments;
+
+    if (state.applicationState.selectedTool === 2){
+      segments = true;
+    } else { 
+      segments = false;
+    }
 
     for (let i = 0; i < newState.length; ++i){
       let item = newState[i];
@@ -135,6 +169,10 @@ class SubjectManager {
           this.drawBox(item);
           if (i === selectedNum){
             this.drawBoxBounding(item);
+
+            if (segments === true){
+              this.drawBoxSegment(item);
+            }
           }
           break;
 
