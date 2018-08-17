@@ -6,7 +6,7 @@ class SegmentShape extends React.Component{
     if (this.props.selectedObj){
       switch(this.props.selectedObj.type){
         case("box"):
-          return <SegmentBox shape={this.props.selectedObj}/>;
+          return <SegmentBox shape={this.props.selectedObj} applicationState={this.props.applicationState}/>;
 
         default:
           return <p>Segmentation for the shape selected not currently implemented.</p>;

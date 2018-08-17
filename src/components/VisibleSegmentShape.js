@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = function(state){
   return {
-    selectedObj: state.itemList[state.applicationState.selectedItem]
+    selectedObj: state.itemList[state.applicationState.selectedItem],
+    applicationState: state.applicationState,
   };
 };
 
