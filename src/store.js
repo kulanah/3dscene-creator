@@ -4,7 +4,7 @@ import rootReducer from './reducers/index';
 
 const defaultState = {
   itemList: [],
-  applicationState: {selectedItem: -1, selectedTool: 0},
+  applicationState: {selectedItem: -1, selectedTool: 0, selectedX: 1, selectedY: 1, selectedZ: 1},
 };
 
 // const enhancers = compose(
