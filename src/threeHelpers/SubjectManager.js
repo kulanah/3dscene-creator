@@ -1,6 +1,7 @@
 import * as THREE from 'three';
-
 import store from '../store';
+
+const ThreeBSP = require('threebsp.js')(THREE);
 
 class SubjectManager {
   constructor(scene) {
@@ -8,6 +9,18 @@ class SubjectManager {
 
     this.meshArr = [];
     this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
+    this.combinedObject = null;
+  }
+
+  combineShapes(){
+    let bsp1 = new ThreeBSP(this.meshArr[0]);
+    let bsp2 = new ThreeBSP(this.meshArr[1]);
+
+    this.combinedObject = bsp1.subtract(bsp2).toMesh();
+    this.combinedObject.material = new THREE.MeshPhongMaterial({color: 0xff69f4});
+
+    this.scene.add(this.combined);
+
   }
   
   clearOldState(){
@@ -99,6 +112,9 @@ class SubjectManager {
 
     this.scene.add(mesh);
     this.meshArr.push(mesh);
+
+    console.log(mesh);
+    console.log(geo);
   }
 
   drawCylinder(item){
@@ -120,6 +136,11 @@ class SubjectManager {
     let state = store.getState(); 
     let selectedNum = state.applicationState.selectedItem;
 
+
+    if (this.combinedObject){
+      this.scene.remove(this.combinedObject);
+      this.scene.add(this.combinedObject);
+    }
     for (let i = 0; i < newState.length; ++i){
       let item = newState[i];
 

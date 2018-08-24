@@ -9,6 +9,10 @@ class Canvas extends React.Component{
     this.threePoint.init();
   }
 
+  combineShapes(shape1, shape2){
+    this.threePoint.combineShapes();
+  }
+
   componentDidUpdate(){
     this.threePoint.updateState(this.props.items);
   }

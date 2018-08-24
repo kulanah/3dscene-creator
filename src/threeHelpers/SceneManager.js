@@ -36,6 +36,10 @@ class SceneManager{
     this.dragEnd = this.dragEnd.bind(this);
   }
     
+  combineShapes(){
+    this.subjectManager.combineShapes();
+  }
+
   buildScene() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#FFF');

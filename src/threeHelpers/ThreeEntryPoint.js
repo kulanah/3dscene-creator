@@ -15,6 +15,10 @@ class ThreeEntryPoint{
     this.render();
   }
   
+  combineShapes(){
+    this.sceneManager.combineShapes();
+  }
+  
   createCanvas(document, container) {
     let canvas = document.createElement('canvas');     
     container.appendChild(canvas);
