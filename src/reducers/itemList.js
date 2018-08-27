@@ -12,6 +12,7 @@ let itemList = function(state = [], action){
         color: color,
         selected: false,
         id: state.length,
+        history: [],
       }];
 
     case 'ADD_CYLINDER':
@@ -25,6 +26,7 @@ let itemList = function(state = [], action){
         color: color,
         selected: false,
         id: state.length,
+        history: [],
       }];
 
     case 'ADD_BOX':
@@ -39,11 +41,14 @@ let itemList = function(state = [], action){
         color: color,
         selected: false,
         id: state.length,
+        history: [],
       }];
     
     case 'UPDATE_SHAPE_PROPERTY': 
       return state.map(item => 
-        item.id === action.id ? {...item, [action.property]: action.newVal} : item);
+        item.id === action.id
+          ? {...item, [action.property]: action.newVal, history: [...item.history, {[action.property]: action.newVal}]} 
+          : item);
     
     case 'DELETE_ITEM':
       return [...state].filter(listItem => {
