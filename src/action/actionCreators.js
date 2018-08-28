@@ -74,3 +74,11 @@ export function selectTool(id){
     id: id,
   };
 }
+
+export function combineShapes(shape1, shape2){
+  return {
+    type: 'COMBINE_SHAPES',
+    shape1:  shape1, 
+    shape2: shape2,
+  }
+}

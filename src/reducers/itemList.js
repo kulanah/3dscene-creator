@@ -73,6 +73,10 @@ let itemList = function(state = [], action){
                 {z: action.newZ}
               ]}
           : item);
+
+    case 'COMBINE_SHAPES':
+      console.log(action);
+      return state;
    
     default: 
       return state;
