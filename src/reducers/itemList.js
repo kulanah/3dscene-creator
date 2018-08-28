@@ -61,7 +61,18 @@ let itemList = function(state = [], action){
 
     case 'UPDATE_SHAPE_POSITION':
       return[...state].map(item =>
-        item.id === action.id ? {...item, x: action.newX, y: action.newY, z: action.newZ} : item);
+        item.id === action.id 
+          ? {...item, 
+            x: action.newX, 
+            y: action.newY, 
+            z: action.newZ, 
+            history: 
+              [...item.history, 
+                {x: action.newX}, 
+                {y: action.newY}, 
+                {z: action.newZ}
+              ]}
+          : item);
    
     default: 
       return state;
