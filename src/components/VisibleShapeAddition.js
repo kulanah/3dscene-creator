@@ -1,4 +1,5 @@
 import { selectTool } from 'action/actionCreators';
+import { combineShapes } from 'action/actionCreators';
 
 import { ShapeAddition } from './ShapeAddition';
 
@@ -10,6 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   selectTool: (toolId) => dispatch(selectTool(toolId)),
+  combineShapes: (shape1, shape2) => dispatch(combineShapes(shape1, shape2)),
 });
 
 export default connect(
