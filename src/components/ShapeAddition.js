@@ -13,18 +13,16 @@ class ShapeAddition extends React.Component{
 
     for (let i = 0; i < htmlForm.length; ++i){
       if (htmlForm[i].type === 'number'){
-        console.log(htmlForm[i].value);
-        console.log(htmlForm[i].name);
-        data.push({[htmlForm[i].name]: htmlForm[i].value});
+        data.push(Number(htmlForm[i].value));
       }
     }
-    console.log(data);
     return data;
   }
 
   submitAddition(event){
     event.preventDefault();
-    this.serializeForm(event.target);
+    let data = this.serializeForm(event.target);
+    // this.props.combineShapes(data[0] - 1, data[1] - 1);
     // console.log(event.target);
   }
   shapeAddition(){
