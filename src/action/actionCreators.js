@@ -62,7 +62,7 @@ export function updateShapePosition(newVal){
 }
 
 export function selectItem(id){
-  return {
+  return {  
     type: 'SELECT_ITEM',
     id: id,
   };
@@ -78,7 +78,15 @@ export function selectTool(id){
 export function combineShapes(shape1, shape2){
   return {
     type: 'COMBINE_SHAPES',
-    shape1:  shape1, 
+    shape1: shape1, 
     shape2: shape2,
-  }
+  };
+}
+
+export function selectAfterCombine(shape1, shape2){
+  return {
+    type: 'SELECT_AFTER_COMBINES',
+    shape1: shape1,
+    shape2: shape2,
+  };
 }
