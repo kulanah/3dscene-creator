@@ -1,3 +1,22 @@
+let combineItemsState = function(state, action){
+  /* 
+      if one of the two is below currently selected AND (the other is ==> crrently selected)
+        decrement currently selected by 1
+      
+  */
+  let newSelected = state.selectedItem;
+
+  if (state.selectedItem > action.shape1){
+    newSelected--;
+  }
+  if (state.selectedItem > action.shape2){
+    newSelected--;
+  }
+  console.log(action);
+  return {...state, selectedItem: 0};
+};
+
+
 let applicationState = function(state = {}, action){
   switch(action.type){
     case 'SELECT_ITEM': 
@@ -5,6 +24,9 @@ let applicationState = function(state = {}, action){
 
     case 'SELECT_TOOL': 
       return {...state, selectedTool: action.id};
+
+    case 'SELECT_AFTER_COMBINES':
+      return combineItemsState(state, action);
 
     default: 
       return state;
