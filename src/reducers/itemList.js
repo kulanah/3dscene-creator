@@ -1,4 +1,67 @@
+import { combineShapes } from "../action/actionCreators";
+
 const color = '#003c8f';
+
+let addComboToCombo = function(destination, source){
+  let newCombo = {...destination};
+
+  for (let sourceItem in source.items){
+    newCombo.items.push(sourceItem);
+  }
+
+  return newCombo;
+};
+
+let createNewItem = function(item1, item2){
+  let newItem = {
+    type: 'combo',
+    color:  item1.color,
+    selected: false,
+    items: [],
+  };
+
+  if (item1.type === 'combo'){
+    addComboToCombo(item1, newItem);
+  } else {
+    newItem.items.push(item1);
+  }
+
+  if (item2.type === 'combo'){
+    addComboToCombo(item2, newItem);
+  } else {
+    newItem.items.push(item2);
+  }
+
+  if (item1.id > item2.id){
+    newItem.id = item2.id;
+  } else {
+    newItem.id = item1.id;
+  }
+
+  return newItem;
+};
+
+let combineShapesInState = function(state, action){
+  let newItem = createNewItem(action.shape1, action.shape2);
+  let filteredState = [...state.filter(item => {
+    if (item.id === action.shape1.id || item.id === action.shape2.id) 
+      return null; 
+    else 
+      return item;
+  })];
+
+  let newState = [...filteredState.slice(0, newItem.id)];
+  newState.push(newItem);
+  newState = [...newState, ...filteredState.slice(newItem.id + 1, Number(filteredState.length))];
+
+  newState = newState.map((item, index) => {
+    let newItem = {...item};
+    newItem.id = index;
+    return newItem;
+  });
+
+  return newState;
+};
 
 let itemList = function(state = [], action){
   switch(action.type){
@@ -75,9 +138,7 @@ let itemList = function(state = [], action){
           : item);
 
     case 'COMBINE_SHAPES':
-      console.log(action);
-      return state;
-   
+      return combineShapesInState(state, action);
     default: 
       return state;
   }
