@@ -7,7 +7,7 @@ class ShapeAddition extends React.Component{
     this.submitAddition = this.submitAddition.bind(this);
 
   }
-
+  2
   serializeForm(htmlForm){
     let data = [];
 
@@ -22,9 +22,46 @@ class ShapeAddition extends React.Component{
   submitAddition(event){
     event.preventDefault();
     let data = this.serializeForm(event.target);
-    // this.props.combineShapes(data[0] - 1, data[1] - 1);
-    // console.log(event.target);
+    let item1 = this.compileState(this.props.items[data[0] - 1]);
+    let item2 = this.compileState(this.props.items[data[1] - 1]);
+    this.props.updateSelectedState(data[0] - 1, data[1] - 1);
+    this.props.combineShapes(item1, item2);
+
+    //compile state (take only the most recent update to each sbpa)
+    //Retrieve two objects
   }
+
+  compileState(item){
+    if (item){
+      let indexes = {};
+      let data = {};
+
+      data.id = item.id;
+
+      for (let i = 0; i < Object.keys(item).length; i++){
+        let property = Object.getOwnPropertyNames(item)[i];
+        if (property !== 'history' && property !== 'selected'){
+          data[property] = item[property];
+        }
+      }
+
+      for (let i = 0; i < item.history.length; i++){
+        let property = Object.getOwnPropertyNames(item.history[i])[0];
+        indexes[property] = i;
+      }
+
+      for (let prop in indexes){
+        data[prop] = item.history[indexes[prop]];
+      }
+
+      return data;
+    }
+
+    else {
+      console.error('No items added to addition function, please select two items to add together.');
+    }
+  }
+
   shapeAddition(){
     return(
       <div>
