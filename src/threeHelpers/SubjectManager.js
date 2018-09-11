@@ -10,16 +10,27 @@ class SubjectManager {
     this.meshArr = [];
     this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
     this.combinedObject = null;
+
   }
 
-  combineShapes(){
-    let bsp1 = new ThreeBSP(this.meshArr[0]);
-    let bsp2 = new ThreeBSP(this.meshArr[1]);
+  combineShapes(shape1, shape2){
+    let bsp1, bsp2 = null;
+
+    if (shape1){
+      bsp1 = new ThreeBSP(shape1);
+    } else {
+      bsp1 = new ThreeBSP(this.meshArr[0]);
+    }
+    if (shape2){
+      bsp2 = new ThreeBSP(shape2);
+    } else {
+      bsp2 = new ThreeBSP(this.meshArr[1]);
+    }
 
     this.combinedObject = bsp1.subtract(bsp2).toMesh();
     this.combinedObject.material = new THREE.MeshPhongMaterial({color: 0xff69f4});
 
-    this.scene.add(this.combined);
+    console.log(this.combinedObject);
 
   }
   
@@ -84,7 +95,46 @@ class SubjectManager {
 
   }
 
-  drawSphere(item){
+  createShapeComboGeo(item){
+    let combineGeo;
+    let meshes = [];
+
+    for (let shape in item.items){
+      switch (item.items[shape].type){
+        case 'box':
+          meshes.push(this.createBoxMesh(item.items[shape]));
+          break;
+
+        case 'sphere': 
+          meshes.push(this.createSphereMesh(item.items[shape]));
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    combineGeo = new ThreeBSP(meshes[0]);
+
+    for (let i = 1; i < meshes.length; i++){
+      let bsp = new ThreeBSP(meshes[i]);
+      combineGeo = combineGeo.union(bsp);
+    }
+
+
+    // let bsp1 = new ThreeBSP(meshes[0]);
+    // let bsp2 = new ThreeBSP(meshes[1]);
+
+    combineGeo = combineGeo.toMesh();
+    combineGeo.material = new THREE.MeshPhongMaterial({color: new THREE.Color(item.items[0].color)});
+    this.scene.add(combineGeo);
+  }
+
+  drawCombo(item){
+    let items = this.createShapeComboGeo(item);
+  }
+
+  createSphereMesh(item){
     let geo = new THREE.SphereGeometry(item.radius, 16, 16);
     let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
     let mesh = new THREE.Mesh(geo, shapeMaterial);
@@ -95,11 +145,17 @@ class SubjectManager {
 
     mesh.reduxID = item.id;
 
+    return mesh;
+  }
+
+  drawSphere(item){
+    let mesh = this.createSphereMesh(item);
+
     this.scene.add(mesh);
     this.meshArr.push(mesh);
   }
 
-  drawBox(item){
+  createBoxMesh(item){
     let geo = new THREE.BoxGeometry(item.width, item.height, item.depth);
     let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
     let mesh = new THREE.Mesh(geo, shapeMaterial);
@@ -110,11 +166,14 @@ class SubjectManager {
     mesh.position.y = item.y;
     mesh.position.z = item.z;
 
+    return mesh;
+  }
+
+  drawBox(item){
+    let mesh = this.createBoxMesh(item);
+
     this.scene.add(mesh);
     this.meshArr.push(mesh);
-
-    console.log(mesh);
-    console.log(geo);
   }
 
   drawCylinder(item){
@@ -164,6 +223,10 @@ class SubjectManager {
           if (i === selectedNum){
             this.drawCylinderBounding(item);
           }
+          break;
+        
+        case 'combo':
+          this.createShapeComboGeo(item);
           break;
 
         default:

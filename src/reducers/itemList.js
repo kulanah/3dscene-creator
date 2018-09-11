@@ -42,6 +42,7 @@ let createNewItem = function(item1, item2){
 };
 
 let combineShapesInState = function(state, action){
+  console.log(action);
   let newItem = createNewItem(action.shape1, action.shape2);
   let filteredState = [...state.filter(item => {
     if (item.id === action.shape1.id || item.id === action.shape2.id) 
@@ -59,7 +60,7 @@ let combineShapesInState = function(state, action){
     newItem.id = index;
     return newItem;
   });
-
+  
   return newState;
 };
 

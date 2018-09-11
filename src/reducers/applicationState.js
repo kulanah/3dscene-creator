@@ -12,8 +12,7 @@ let combineItemsState = function(state, action){
   if (state.selectedItem > action.shape2){
     newSelected--;
   }
-  console.log(action);
-  return {...state, selectedItem: 0};
+  return {...state, selectedItem: newSelected};
 };
 
 

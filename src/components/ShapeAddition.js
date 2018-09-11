@@ -7,7 +7,6 @@ class ShapeAddition extends React.Component{
     this.submitAddition = this.submitAddition.bind(this);
 
   }
-  2
   serializeForm(htmlForm){
     let data = [];
 
@@ -51,7 +50,7 @@ class ShapeAddition extends React.Component{
       }
 
       for (let prop in indexes){
-        data[prop] = item.history[indexes[prop]];
+        data[prop] = item.history[indexes[prop]][prop];
       }
 
       return data;
