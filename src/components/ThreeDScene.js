@@ -13,11 +13,6 @@ class ThreeDScene extends React.Component{
     super(props);
 
     this.canvasRef = React.createRef();
-    this.combineShapes = this.combineShapes.bind(this);
-  }
-
-  combineShapes(){
-    this.canvasRef.current.combineShapes('1', '2');
   }
 
   render(){
@@ -28,7 +23,6 @@ class ThreeDScene extends React.Component{
         <VisibleItemList />
         <VisiblePropertiesBox />
         <VisibleToolOptions />
-        <button onClick={this.combineShapes}>dsafdsafas</button>
       </div>
     );
   }
