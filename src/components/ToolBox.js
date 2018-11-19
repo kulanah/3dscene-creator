@@ -1,14 +1,14 @@
 import React from 'react';
-import './css/ToolBar.css';
+import './css/ToolBox.css';
 
 import shapes from 'img/shapes.png';
 import segments from 'img/segments.png';
 import addition from 'img/addition.png';
 
-class ToolBar extends React.Component{
+class ToolBox extends React.Component{
   render(){
     return (
-      <div className='window' id='toolBarDiv'>
+      <div className='window' id='ToolBoxDiv'>
         <div className='windowHeader'>Toolbox</div>
         <div id='toolsDiv'>
           <div onClick={() => this.props.selectTool(1)} className='toolDiv'>
@@ -29,4 +29,4 @@ class ToolBar extends React.Component{
   }
 }
 
-export { ToolBar };
+export { ToolBox };

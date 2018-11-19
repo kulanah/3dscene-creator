@@ -1,6 +1,6 @@
 import { selectTool } from 'action/actionCreators';
 
-import { ToolBar } from './ToolBar';
+import { ToolBox } from './ToolBox';
 
 import { connect } from 'react-redux';
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ToolBar);
+)(ToolBox);

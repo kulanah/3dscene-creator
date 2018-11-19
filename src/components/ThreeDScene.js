@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Canvas } from './Canvas';
-import VisibleToolBar from './VisibleToolBar';
+import VisibleToolBox from './VisibleToolBox';
 import VisibleItemList from './VisibleItemList';
 import VisibleToolOptions from './VisibleToolOptions';
 import VisiblePropertiesBox from './VisiblePropertiesBox';
@@ -19,7 +19,7 @@ class ThreeDScene extends React.Component{
     return(
       <div id='reactDiv'>
         <Canvas ref={this.canvasRef} items={this.props.items}/>
-        <VisibleToolBar />
+        <VisibleToolBox />
         <VisibleItemList />
         <VisiblePropertiesBox />
         <VisibleToolOptions />
