@@ -25,9 +25,6 @@ class ShapeAddition extends React.Component{
     let item2 = this.compileState(this.props.items[data[1] - 1]);
     this.props.updateSelectedState(data[0] - 1, data[1] - 1);
     this.props.combineShapes(item1, item2);
-
-    //compile state (take only the most recent update to each sbpa)
-    //Retrieve two objects
   }
 
   compileState(item){
