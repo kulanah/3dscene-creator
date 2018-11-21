@@ -1,4 +1,5 @@
-import { combineShapes } from "../action/actionCreators";
+import { combineShapes } from '../action/actionCreators';
+import { createShapeComboGeo } from '../threeHelpers/SubjectManager';
 
 const color = '#003c8f';
 
@@ -41,6 +42,15 @@ let createNewItem = function(item1, item2){
   return newItem;
 };
 
+let determineNewItemPosition = function(item){
+  let geo = createShapeComboGeo(item);
+  item.x = geo.position.x;
+  item.y = geo.position.y;
+  item.z = geo.position.z;
+  
+  return item;
+};
+
 let combineShapesInState = function(state, action){
   let newItem = createNewItem(action.shape1, action.shape2);
   let filteredState =  [...state.filter(item => {
@@ -49,6 +59,8 @@ let combineShapesInState = function(state, action){
     else 
       return item;
   })];
+
+  newItem = determineNewItemPosition(newItem);
 
   let newState = [...filteredState.slice(0, newItem.id)];
   newState.push(newItem);
@@ -59,6 +71,7 @@ let combineShapesInState = function(state, action){
     newItem.id = index;
     return newItem;
   });
+
   
   return newState;
 };
