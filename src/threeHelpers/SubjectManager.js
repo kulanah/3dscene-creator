@@ -30,8 +30,6 @@ class SubjectManager {
     this.combinedObject = bsp1.subtract(bsp2).toMesh();
     this.combinedObject.material = new THREE.MeshPhongMaterial({color: 0xff69f4});
 
-    console.log(this.combinedObject);
-
   }
   
   clearOldState(){
@@ -120,7 +118,6 @@ class SubjectManager {
       let bsp = new ThreeBSP(meshes[i]);
       combineGeo = combineGeo.union(bsp);
     }
-
 
     // let bsp1 = new ThreeBSP(meshes[0]);
     // let bsp2 = new ThreeBSP(meshes[1]);
