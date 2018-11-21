@@ -39,6 +39,7 @@ class ShapeAddition extends React.Component{
 
       for (let i = 0; i < Object.keys(item).length; i++){
         let property = Object.getOwnPropertyNames(item)[i];
+        
         if (property !== 'history' && property !== 'selected'){
           data[property] = item[property];
         }
@@ -66,10 +67,19 @@ class ShapeAddition extends React.Component{
       <div>
         <form onSubmit={this.submitAddition} action=''>
           <p>Select the two shapes to add together:</p>
-          <label htmlFor='additionOne'>First shape:</label>
-          <input type='number' name='additionOne' id=''/>
-          <label htmlFor='additionTwo'>Second shape:</label>
-          <input type='number' name='additionTwo' id=''/>
+          <div id='ShapeAdditionForm'>
+            <span>
+              <label htmlFor='additionOne'>First shape:</label>
+              <input type='number' name='additionOne' id=''/>
+            </span>
+            <br/>
+            <span>
+              <label htmlFor='additionTwo'>Second shape:</label>
+              <input type='number' name='additionTwo' id=''/>
+            </span>
+
+          </div>
+          <br/>
           <input type='submit' />
         </form>
       </div>

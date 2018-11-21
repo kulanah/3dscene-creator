@@ -7,3 +7,10 @@
 #toolOptionsContent{
   padding: 1em;
 }
+
+#ShapeAdditionForm{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+
+}
