@@ -19,7 +19,7 @@
       if ( geometry instanceof THREE.Geometry ) {
         this.matrix = new THREE.Matrix4;
       } else if ( geometry instanceof THREE.Mesh ) {
-        // #todo: add hierarchy support
+        // TODO: add hierarchy support
         geometry.updateMatrix();
         this.matrix = geometry.matrix.clone();
         geometry = geometry.geometry;
