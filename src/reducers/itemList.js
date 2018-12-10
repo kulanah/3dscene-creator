@@ -1,4 +1,4 @@
-import { combineShapes } from '../action/actionCreators';
+import { combineShapes, updateShapePosition } from '../action/actionCreators';
 import { createShapeComboGeo } from '../threeHelpers/SubjectManager';
 
 const color = '#003c8f';
@@ -19,6 +19,7 @@ let createNewItem = function(item1, item2){
     color:  item1.color,
     selected: false,
     items: [],
+    history: [],
   };
 
   if (item1.type === 'combo'){
@@ -47,6 +48,7 @@ let determineNewItemPosition = function(item){
   item.x = geo.position.x;
   item.y = geo.position.y;
   item.z = geo.position.z;
+  item.history = [{x: item.x}, {y: item.y}, {z: item.z}];
   
   return item;
 };
@@ -74,6 +76,20 @@ let combineShapesInState = function(state, action){
 
   
   return newState;
+};
+
+let updateItemPositionState = function(item, action){
+  return {...item,
+    x: action.newX, 
+    y: action.newY, 
+    z: action.newZ,
+    history: [ 
+      ...item.history, 
+      {x: action.newX}, 
+      {y: action.newY}, 
+      {z: action.newZ}
+    ]
+  };
 };
 
 let itemList = function(state = [], action){
@@ -136,18 +152,9 @@ let itemList = function(state = [], action){
       });
 
     case 'UPDATE_SHAPE_POSITION':
-      return[...state].map(item =>
+      return [...state].map(item => 
         item.id === action.id 
-          ? {...item, 
-            x: action.newX, 
-            y: action.newY, 
-            z: action.newZ, 
-            history: 
-              [...item.history, 
-                {x: action.newX}, 
-                {y: action.newY}, 
-                {z: action.newZ}
-              ]}
+          ? updateItemPositionState(item, action, state) 
           : item);
 
     case 'COMBINE_SHAPES':
