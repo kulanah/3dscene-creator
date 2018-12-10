@@ -259,6 +259,8 @@ let createShapeComboGeo = function(item){
 
   combineGeo = combineGeo.toMesh();
   combineGeo.material = new THREE.MeshPhongMaterial({color: new THREE.Color(item.items[0].color)});
+
+  combineGeo.reduxID = item.id;
   return combineGeo;
 };
 
