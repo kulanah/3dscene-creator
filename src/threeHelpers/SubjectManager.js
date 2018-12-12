@@ -51,24 +51,10 @@ class SubjectManager {
   }
 
   drawSphere(item){
-    let mesh = this.createSphereMesh(item);
+    let mesh = createSphereMesh(item);
 
     this.scene.add(mesh);
     this.meshArr.push(mesh);
-  }
-
-  createSphereMesh(item){
-    let geo = new THREE.SphereGeometry(item.radius, 16, 16);
-    let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
-    let mesh = new THREE.Mesh(geo, shapeMaterial);
-    
-    mesh.position.x = item.x;
-    mesh.position.y = item.y;
-    mesh.position.z = item.z;
-
-    mesh.reduxID = item.id;
-
-    return mesh;
   }
 
   drawSphereBounding(item){
@@ -214,7 +200,7 @@ let createShapeComboGeo = function(item, positionOffset){
         break;
 
       case 'sphere': 
-        meshes.push(SubjectManager.createSphereMesh(offsetShape));
+        meshes.push(createSphereMesh(offsetShape));
         break;
 
       case 'cylinder':
@@ -250,6 +236,20 @@ let createBoxMesh = function(item){
   mesh.position.x = item.x;
   mesh.position.y = item.y;
   mesh.position.z = item.z;
+
+  return mesh;
+};
+
+let createSphereMesh = function(item){
+  let geo = new THREE.SphereGeometry(item.radius, 16, 16);
+  let shapeMaterial = new THREE.MeshPhongMaterial({color: item.color});
+  let mesh = new THREE.Mesh(geo, shapeMaterial);
+  
+  mesh.position.x = item.x;
+  mesh.position.y = item.y;
+  mesh.position.z = item.z;
+
+  mesh.reduxID = item.id;
 
   return mesh;
 };
