@@ -3,6 +3,14 @@ import { createShapeComboGeo } from '../threeHelpers/SubjectManager';
 
 const color = '#003c8f';
 
+let retrieveIdNumber = function(items){
+  if (items[0].id > items[1].id){
+    return items[1].id;
+  } else {
+    return items[0].id;
+  }
+};
+
 let addComboToCombo = function(destination, source){
   let newCombo = {...destination};
 
@@ -13,48 +21,71 @@ let addComboToCombo = function(destination, source){
   return newCombo;
 };
 
-let createNewItem = function(item1, item2){
+let addNoncomboToCombo = function(item){
+  let newItem = {...item};
+  delete newItem.id;
+  delete newItem.history;
+
+  return newItem;
+};
+
+let createNewItem = function(items){
   let newItem = {
     type: 'combo',
-    color:  item1.color,
+    color:  items[0].color,
     selected: false,
     items: [],
     history: [],
   };
 
-  if (item1.type === 'combo'){
-    addComboToCombo(item1, newItem);
-  } else {
-    newItem.items.push(item1);
+  for (let item in items){
+    if (items[item].type === 'combo'){
+      newItem.items.push(addComboToCombo(items[item]));
+    } else {
+      newItem.items.push(addNoncomboToCombo(items[item], newItem));
+    }
   }
 
-  if (item2.type === 'combo'){
-    addComboToCombo(item2, newItem);
-  } else {
-    newItem.items.push(item2);
-  }
-
-  if (item1.id > item2.id){
-    newItem.id = item2.id;
-  } else {
-    newItem.id = item1.id;
-  }
+  newItem.id = retrieveIdNumber(items);
 
   return newItem;
 };
 
+let resetComboPiecePosition = function(items, position){
+  for (let item in items){ 
+    items[item].x = items[item].x - position.x;
+    items[item].y = items[item].y - position.y;
+    items[item].z = items[item].z - position.z;
+  }
+};
+
 let determineNewItemPosition = function(item){
-  let geo = createShapeComboGeo(item);
+  let geo = createShapeComboGeo(item, {x: 0, y: 0, z: 0});
   item.x = geo.position.x;
   item.y = geo.position.y;
   item.z = geo.position.z;
+
+  let itemPosition = {x: item.x, y: item.y, z: item.z};
+
+  resetComboPiecePosition(item.items, itemPosition);
+
   item.history = [{x: item.x}, {y: item.y}, {z: item.z}];
   
   return item;
 };
 
+let resetIndexes = function(source){
+  let newState = source.map((item, index) => {
+    let newItem = {...item};
+    newItem.id = index;
+    return newItem;
+  });
+
+  return newState;
+};
+
 let combineShapesInState = function(state, action){
-  let newItem = createNewItem(action.shape1, action.shape2);
+  let newItem = createNewItem([action.shape1, action.shape2]);
   let filteredState =  [...state.filter(item => {
     if (item.id === action.shape1.id || item.id === action.shape2.id) 
       return null; 
@@ -63,18 +94,15 @@ let combineShapesInState = function(state, action){
   })];
 
   newItem = determineNewItemPosition(newItem);
+  
 
   let newState = [...filteredState.slice(0, newItem.id)];
   newState.push(newItem);
   newState = [...newState, ...filteredState];
 
-  newState = newState.map((item, index) => {
-    let newItem = {...item};
-    newItem.id = index;
-    return newItem;
-  });
+  newState = resetIndexes(newState);
 
-  
+
   return newState;
 };
 
@@ -154,7 +182,7 @@ let itemList = function(state = [], action){
     case 'UPDATE_SHAPE_POSITION':
       return [...state].map(item => 
         item.id === action.id 
-          ? updateItemPositionState(item, action, state) 
+          ? updateItemPositionState(item, action) 
           : item);
 
     case 'COMBINE_SHAPES':
