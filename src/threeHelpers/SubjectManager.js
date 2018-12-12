@@ -9,33 +9,8 @@ class SubjectManager {
 
     this.meshArr = [];
     this.boundingMaterial = new THREE.MeshBasicMaterial({color: 0x00ff04, wireframe: true});
-    this.combinedObject = null;
-
   }
 
-  combineShapes(shape1, shape2){
-    //TODO: Trace if this does anything.  Seems like it's extraneous/unused...
-    let bsp1, bsp2 = null;
-
-    if (shape1){
-      bsp1 = new ThreeBSP(shape1);
-    } else {
-      //TODO: Figure out if this was debugging code or what.  This seems
-      //      very wrong...
-      bsp1 = new ThreeBSP(this.meshArr[0]);
-    }
-    if (shape2){
-      bsp2 = new ThreeBSP(shape2);
-    } else {
-      //TODO: See above note
-      bsp2 = new ThreeBSP(this.meshArr[1]);
-    }
-
-    this.combinedObject = bsp1.subtract(bsp2).toMesh();
-    this.combinedObject.material = new THREE.MeshPhongMaterial({color: 0xff69f4});
-
-  }
-  
   clearOldState(){
     while(this.meshArr[0]){
       this.scene.remove(this.meshArr.shift());
@@ -52,7 +27,8 @@ class SubjectManager {
   }
 
   drawCombo(item){
-    let mesh = createShapeComboGeo(item);
+    let positionOffsets = {x: -item.x, y: -item.y, z: -item.z};
+    let mesh = createShapeComboGeo(item, positionOffsets);
     this.scene.add(mesh);
     this.meshArr.push(mesh);
   }
@@ -182,11 +158,6 @@ class SubjectManager {
     let state = store.getState(); 
     let selectedNum = state.applicationState.selectedItem;
 
-
-    if (this.combinedObject){
-      this.scene.remove(this.combinedObject);
-      this.scene.add(this.combinedObject);
-    }
     for (let i = 0; i < newState.length; ++i){
       let item = newState[i];
 
@@ -227,18 +198,23 @@ class SubjectManager {
   }
 }
 
-let createShapeComboGeo = function(item){
+let createShapeComboGeo = function(item, positionOffset){
   let combineGeo;
   let meshes = [];
 
   for (let shape in item.items){
-    switch (item.items[shape].type){
+    let offsetShape = {...item.items[shape]};
+    offsetShape.x -= positionOffset.x;
+    offsetShape.y -= positionOffset.y;
+    offsetShape.z -= positionOffset.z;
+
+    switch (offsetShape.type){
       case 'box':
-        meshes.push(createBoxMesh(item.items[shape]));
+        meshes.push(createBoxMesh(offsetShape));
         break;
 
       case 'sphere': 
-        meshes.push(SubjectManager.createSphereMesh(item.items[shape]));
+        meshes.push(SubjectManager.createSphereMesh(offsetShape));
         break;
 
       case 'cylinder':
@@ -276,7 +252,7 @@ let createBoxMesh = function(item){
   mesh.position.z = item.z;
 
   return mesh;
-}
+};
 
 export { SubjectManager };
 export { createShapeComboGeo };
